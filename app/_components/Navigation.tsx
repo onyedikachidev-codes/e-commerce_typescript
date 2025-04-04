@@ -9,6 +9,8 @@ import { FaChevronRight, FaTimes, FaShoppingCart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 import Logo from "./Logo";
+import Signup from "@/app/_components/Signup";
+import Login from "@/app/_components/Login";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -88,16 +90,16 @@ export default function Navigation() {
         </ul>
       </div>
 
-      <div className="flex justify-between gap-12">
+      <div className="flex justify-between items-center gap-12">
         <div className="cursor-pointer">
           <FaShoppingCart className="h-8 w-8" />
         </div>
         <div className={`${mons.className} flex gap-4`}>
-          <div className="hidden lg:block py-[0.4rem] bg-gray-200 hover:bg-gray-300 px-7 rounded-md text-base border border-gray-600 text-gray-900">
-            {/* <Signup /> */}
+          <div>
+            <Signup />
           </div>
-          <div className="hidden lg:block py-[0.4rem] bg-gray-700 hover:bg-gray-600 px-7 rounded-md text-base border border-gray-300 text-gray-100">
-            {/* <Login /> */}
+          <div>
+            <Login />
           </div>
         </div>
       </div>
