@@ -7,9 +7,8 @@ export default function Home() {
       <section>
         <Header />
 
-        <div className="mt-30">
+        <div className="mt-30 flex justify-end px-5">
           <SearchBar />
-          Helooooo
         </div>
       </section>
     </main>
