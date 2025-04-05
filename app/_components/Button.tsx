@@ -1,11 +1,21 @@
 import { ReactNode } from "react";
 
 const base =
-  "hidden lg:block py-[0.4rem] px-7 cursor-pointer rounded-md text-base border transition";
+  "hidden lg:block py-[0.4rem] px-7 cursor-pointer rounded-md text-base  transition rounded-md shadow-md hover:shadow-lg transition-shadow duration-300";
 
 const styles = {
-  signup: base + " border-blue-800 text-blue-700 bg-white hover:bg-blue-100",
-  login: base + " bg-gray-600 hover:bg-gray-800 border-gray-300 text-gray-100",
+  signup:
+    base +
+    " py-[0.4rem] border border-blue-500 text-blue-600 bg-white hover:bg-gray-50 transition-transform hover:scale-105 duration-200 ease-in-out",
+  login:
+    base +
+    " py-[0.4rem] border bg-gray-600 hover:bg-gray-700 border-gray-300 text-gray-100 transition-transform hover:scale-105 duration-200 ease-in-out",
+  cta:
+    base +
+    "  relative py-[0.7rem] border border-gray-200 text-gray-200 bg-blue-600 transition-transform hover:scale-105 duration-200 ease-in-out mt-3 z-10",
+  black:
+    base +
+    "  relative py-[0.7rem] bg-white -translate-y-[45px] translate-x-[2.5px]",
 };
 
 type ButtonVariant = keyof typeof styles;

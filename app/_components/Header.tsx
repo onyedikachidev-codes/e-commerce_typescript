@@ -2,7 +2,7 @@ import Navigation from "@/app/_components/Navigation";
 
 function Header() {
   return (
-    <header className="py-5 fixed left-0 top-0 w-full bg-gray-100 z-40">
+    <header className="py-5 fixed left-0 top-0 w-full backdrop-blur-lg z-40 shadow-md">
       <Navigation />
     </header>
   );

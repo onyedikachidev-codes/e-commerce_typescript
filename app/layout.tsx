@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Poppins, Cedarville_Cursive, Montserrat } from "next/font/google";
+import {
+  Poppins,
+  Cedarville_Cursive,
+  Montserrat,
+  Dancing_Script,
+} from "next/font/google";
 import "@/app/_styles/globals.css";
 
 const poppins = Poppins({
@@ -23,6 +28,13 @@ const cursive = Cedarville_Cursive({
   weight: ["400"],
 });
 
+const dancing = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Trivela",
@@ -40,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${cursive.variable} ${mons.variable} antialiased`}
+        className={`${poppins.variable} ${cursive.variable} ${mons.variable} ${dancing.variable} antialiased`}
       >
         {children}
       </body>
