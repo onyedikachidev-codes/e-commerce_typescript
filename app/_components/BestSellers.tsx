@@ -14,7 +14,7 @@ const mons = Montserrat({
 export default function BestSellers() {
   return (
     <section className={`${mons.className} min-h-screen`}>
-      <div className="flex justify-between items-end px-8">
+      <div className="flex justify-between items-end px-4 pb-4">
         <h2 className="uppercase text-5xl font-semibold pt-12">BestSellers</h2>
 
         <ul

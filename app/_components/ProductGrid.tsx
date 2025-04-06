@@ -4,28 +4,28 @@ import ProductItem from "./ProductItem";
 export default function ProductGrid() {
   const products = [
     {
-      imageSrc: "/images/bucket-hat.jpg",
+      imageSrc: "/bucket-hat.jpg",
       altText: "Man wearing a sports bucket hat",
       title: "Sports bucket hat",
       price: 12.0,
       rating: 4.9,
     },
     {
-      imageSrc: "/images/white-sneakers.jpg",
+      imageSrc: "/white-sneakers.jpg",
       altText: "Pair of white sneakers",
       title: "White sneakers",
       price: 32.0,
       rating: 4.7,
     },
     {
-      imageSrc: "/images/teddy-hoodie.jpg",
+      imageSrc: "/hoodie.jpg",
       altText: "Close-up of a teddy hoodie",
       title: "Teddy hoodie",
       price: 28.0,
       rating: 4.8,
     },
     {
-      imageSrc: "/images/fleece-sweatpants.jpg",
+      imageSrc: "/sweatpants.jpg",
       altText: "Person wearing fleece sweatpants",
       title: "Fleece sweatpants",
       price: 35.0,
