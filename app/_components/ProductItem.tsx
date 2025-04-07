@@ -18,13 +18,13 @@ export default function ProductItem({
   price,
 }: ProductProps) {
   return (
-    <div className="relative flex flex-col items-start">
+    <div className="relative flex flex-col items-start p-3 transition-all cursor-pointer hover:scale-[102%] duration-200 ease-in-out rounded-md shadow-md hover:shadow-lg">
       <div className="relative w-full h-80">
         <Image
           src={imageSrc}
           alt={altText}
           layout="fill"
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           className="transition-opacity duration-200"
         />
       </div>

@@ -51,6 +51,9 @@ export default function Home() {
       </section>
 
       <BestSellers />
+      <div id="about" className="">
+        &nbsp;
+      </div>
       <section className={`${mons.className} min-h-[90dvh]`}>
         <About />
         <Footer />

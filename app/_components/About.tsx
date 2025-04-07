@@ -1,16 +1,14 @@
 import React from "react";
 import Button from "./Button";
 
-import Link from "next/link";
-
 export default function About() {
   return (
     <>
-      <div className="lg:ml-32 md:ml-24 mx-10 text-gray-800">
+      <div className="mx-20 text-gray-800">
         <h2 className="uppercase text-gray-700 text-2xl font-semibold">
           About Trivela
         </h2>
-        <p className="lg:max-w-[91%] md:max-w-[95%] max-w-full mt-2 text-xl font-medium ">
+        <p className="lg:max-w-[97%] md:max-w-[97%] max-w-full mt-2 text-xl font-medium ">
           At Trivela, we&apos;re passionate about bringing you stylish and
           affordable fashion that fits your everyday lifestyle. Born from a love
           for clean designs and quality materials, we set out to create pieces
@@ -19,12 +17,30 @@ export default function About() {
           covered.
         </p>
         <h2 className="uppercase text-gray-700 text-2xl font-semibold pt-8">
-          Our promise?
+          Why Trivela?
         </h2>
-        <p className="lg:max-w-[91%] md:max-w-[95%] max-w-full mt-2 text-xl font-medium ">
-          Great style, zero stress. Thanks for being part of our journey.
-          Let&apos;s keep it simple and fresh.
-        </p>
+        <ul className="lg:max-w-[97%] md:max-w-[95%] max-w-full mt-2 text-xl font-medium pl-8 flex flex-col gap-2">
+          <li className="flex gap-2 items-center">
+            <span>1.</span>
+            Quality you can feel – We don’t compromise on materials or
+            craftsmanship.
+          </li>
+          <li className="flex gap-2 items-center">
+            <span>2.</span>
+            Community-first – We listen, we learn, and we grow with our
+            customers.
+          </li>
+          <li className="flex gap-2 items-center">
+            <span>3.</span>
+            Timeless, not trendy – Our styles are designed to outlive the
+            seasons.
+          </li>
+
+          <li className="flex gap-2 items-center">
+            <span>4.</span>
+            Fair pricing – Premium shouldn’t mean overpriced. We keep it real.
+          </li>
+        </ul>
       </div>
 
       <div className="flex items-center justify-center">

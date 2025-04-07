@@ -49,7 +49,7 @@ export default function Navigation() {
           className={`${mons.className} lg:flex hidden items-center gap-8 text-xl text-black uppercase`}
         >
           <li>
-            <Link href="/explore" className="relative group">
+            <Link href="/products" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
                 Shop
               </span>
@@ -66,10 +66,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
-            <Link
-              href="mailto:nwangumabimma@gmail.com"
-              className="relative group"
-            >
+            <Link href="#about" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
                 About
               </span>
