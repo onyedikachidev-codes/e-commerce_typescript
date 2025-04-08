@@ -1,9 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { ProductListingProps } from "../models/item";
+import Link from "next/link";
 
 export default function ProductListingItem({
+  id,
   image,
   altText = "image",
   title,
@@ -12,13 +13,17 @@ export default function ProductListingItem({
 }: ProductListingProps): React.JSX.Element {
   const { count } = rating;
   return (
-    <div className="relative flex flex-col items-start p-3 transition-all cursor-pointer hover:scale-[102%] duration-200 ease-in-out rounded-md shadow-md hover:shadow-lg">
+    <Link
+      href={`/products/${id}`}
+      className="relative flex flex-col items-start p-3 transition-all cursor-pointer hover:scale-[102%] duration-200 ease-in-out rounded-md shadow-md hover:shadow-lg"
+    >
       <div className="relative w-full h-80">
-        <Image
+        <img
           src={image}
           alt={altText}
-          layout="fill"
-          style={{ objectFit: "cover" }}
+          style={{
+            objectFit: "cover",
+          }}
           className="transition-opacity duration-200"
         />
       </div>
@@ -41,6 +46,6 @@ export default function ProductListingItem({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

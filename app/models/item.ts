@@ -4,5 +4,6 @@ export interface ProductListingProps {
   altText: "image";
   title: string;
   price: number;
+  description?: string;
   rating: { rate: number; count: number };
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 export default function About() {
+  const router = useRouter();
   return (
     <>
       <div className="mx-20 text-gray-800">
@@ -45,7 +47,7 @@ export default function About() {
 
       <div className="flex items-center justify-center">
         <div className="relative inline-block mt-4 ">
-          <Button onClick={() => console.log("clicked")} type="cta">
+          <Button onClick={() => router.push("/products")} type="cta">
             Shop Now
           </Button>
           <Button onClick={() => console.log("clicked")} type="black">

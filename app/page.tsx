@@ -9,6 +9,7 @@ import BestSellers from "@/app/_components/BestSellers";
 import About from "./_components/About";
 import Footer from "./_components/Footer";
 import Socials from "./_components/Socials";
+import { useRouter } from "next/navigation";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -18,6 +19,7 @@ const mons = Montserrat({
 });
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main>
       <section className="min-h-screen bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
@@ -38,7 +40,7 @@ export default function Home() {
             Your next favorite thing is just a click away.
           </h2>
           <div className="relative inline-block">
-            <Button onClick={() => console.log("clicked")} type="cta">
+            <Button onClick={() => router.push("/products")} type="cta">
               Shop Now
             </Button>
             <Button onClick={() => console.log("clicked")} type="black">

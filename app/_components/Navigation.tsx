@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Signup from "@/app/_components/Signup";
 import Login from "@/app/_components/Login";
+import NavModal from "@/app/_components/NavModal";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ const mons = Montserrat({
 export default function Navigation() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // Add or remove overflow: hidden on the body
@@ -57,14 +59,37 @@ export default function Navigation() {
             </Link>
           </li>
 
-          <li>
-            <Link href="/about" className="relative group">
-              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                Categories
-              </span>
+          <li
+            className="relative cursor-pointer text-gray-800 hover:text-gray-500 transition duration-300"
+            onMouseEnter={() => setShowModal(true)}
+            onMouseLeave={() => setShowModal(false)}
+          >
+            <Link href="" className="group ">
+              <span className="">Categories</span>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
+            <NavModal isOpen={showModal}>
+              <div className="lowercase flex justify-between">
+                <div className="border-r border-gray-400 pr-4">
+                  <div className="hover:text-blue-300 transition-all duration-200">
+                    men&apos;s clothing
+                  </div>
+                  <div className="hover:text-blue-300 transition-all duration-200">
+                    jewelery
+                  </div>
+                </div>
+                <div className="pl-4">
+                  <div className="hover:text-blue-300 transition-all duration-200">
+                    electronics
+                  </div>
+                  <div className="hover:text-blue-300 transition-all duration-200">
+                    women&apos;s clothing
+                  </div>
+                </div>
+              </div>
+            </NavModal>
           </li>
+
           <li>
             <Link href="#about" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
