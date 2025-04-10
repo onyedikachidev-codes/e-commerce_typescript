@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import {
   Poppins,
@@ -6,6 +8,8 @@ import {
   Dancing_Script,
 } from "next/font/google";
 import "@/app/_styles/globals.css";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -54,7 +58,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${cursive.variable} ${mons.variable} ${dancing.variable} antialiased`}
       >
-        {children}
+        <Provider store={store}>{children}</Provider>
       </body>
     </html>
   );

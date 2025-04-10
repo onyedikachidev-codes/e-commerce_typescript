@@ -4,7 +4,6 @@ import Spinner from "@/app/_components/Spinner";
 import { ProductListingProps } from "@/app/models/item";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
-import Image from "next/image";
 import React, { use } from "react";
 
 type PageProps = {
@@ -43,11 +42,10 @@ export default function Page({ params }: PageProps) {
     <main>
       <div className="flex">
         <div className="">
-          <Image
+          <img
             src={product?.image}
             alt={product?.title}
-            height={50}
-            width={50}
+            className="h-56 w-[100%]"
           />
         </div>
 
