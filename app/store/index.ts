@@ -5,7 +5,7 @@ import cartReducer from "./carts/index";
 const store = configureStore({
   reducer: {
     //Enter names of reducers
-    account: cartReducer,
+    cart: cartReducer,
   },
 });
 

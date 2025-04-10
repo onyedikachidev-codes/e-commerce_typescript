@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface CartItem {
   cartId: number;
-  name: string;
+  title: string;
   quantity: number;
   unitPrice: number;
   totalPrice: number;
@@ -16,7 +16,7 @@ const initialState: InitialStateProps = {
   cart: [
     {
       cartId: 1,
-      name: "Bag",
+      title: "Bag",
       quantity: 2,
       unitPrice: 200,
       totalPrice: 400,
@@ -35,12 +35,33 @@ const cartSlice = createSlice({
       //playload is the cartId
       state.cart = state.cart.filter((item) => item.cartId !== action.payload);
     },
-    increaseItemQuantity(state, action) {},
-    decreaseItemQuantity(state, action) {},
-    clearCart(state, action) {},
+    increaseItemQuantity(state, action) {
+      //The payload is the cartId
+      const item = state.cart.find((item) => item.cartId === action.payload);
+      if (item) {
+        item.quantity++;
+        item.totalPrice = item.quantity * item.unitPrice;
+      }
+    },
+    decreaseItemQuantity(state, action) {
+      const item = state.cart.find((item) => item.cartId === action.payload);
+      if (item) {
+        item.quantity--;
+        item.totalPrice = item.quantity * item.unitPrice;
+      }
+    },
+    clearCart(state) {
+      state.cart = [];
+    },
   },
 });
 
-export const { addItems } = cartSlice.actions;
+export const {
+  addItems,
+  deleteItems,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  clearCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -2,6 +2,9 @@ import React from "react";
 import { CiStar } from "react-icons/ci";
 import { ProductListingProps } from "../models/item";
 import Link from "next/link";
+import Button from "./Button";
+import { useDispatch } from "react-redux";
+import { addItems } from "../store/carts";
 
 export default function ProductListingItem({
   id,
@@ -11,7 +14,19 @@ export default function ProductListingItem({
   price,
   rating,
 }: ProductListingProps): React.JSX.Element {
+  const dispatch = useDispatch();
   const { count } = rating;
+
+  function handleAddToCart() {
+    const newItem = {
+      cartId: id,
+      title,
+      quantity: 1,
+      unitPrice: price,
+      totalPrice: price * 1,
+    };
+    dispatch(addItems(newItem));
+  }
   return (
     <Link
       href={`/products/${id}`}
@@ -45,6 +60,9 @@ export default function ProductListingItem({
             <span className="text-gray-600 text-sm px-1">({count})</span>
           </div>
         </div>
+        <Button onClick={handleAddToCart} type="cta">
+          Shop Now
+        </Button>
       </div>
     </Link>
   );
