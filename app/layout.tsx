@@ -10,6 +10,7 @@ import {
 import "@/app/_styles/globals.css";
 import { Provider } from "react-redux";
 import store from "./store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -53,12 +54,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body
         className={`${poppins.variable} ${cursive.variable} ${mons.variable} ${dancing.variable} antialiased`}
       >
-        <Provider store={store}>{children}</Provider>
+        <Provider store={store}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </Provider>
       </body>
     </html>
   );

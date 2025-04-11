@@ -68,7 +68,10 @@ export default function Navigation() {
               <span className="">Categories</span>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <NavModal isOpen={showModal}>
+            <NavModal
+              isOpen={showModal}
+              uniqueStyles="fixed translate-y-0 -translate-x-32"
+            >
               <div className="lowercase flex justify-between">
                 <div className="border-r border-gray-400 pr-4">
                   <div className="hover:text-blue-300 transition-all duration-200">
