@@ -1,7 +1,7 @@
 "use client";
 
 import Spinner from "@/app/_components/Spinner";
-import { ProductListingProps } from "@/app/models/item";
+import { ProductListingProps } from "@/app/_models/item";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import React, { use } from "react";

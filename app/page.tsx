@@ -6,11 +6,10 @@ import Header from "@/app/_components/Header";
 import SearchBar from "@/app/_components/SearchBar";
 import Button from "@/app/_components/Button";
 import BestSellers from "@/app/_components/BestSellers";
-import About from "./_components/About";
-import Footer from "./_components/Footer";
-import Socials from "./_components/Socials";
+import About from "@/app/_components/About";
+import Footer from "@/app/_components/Footer";
+import Socials from "@/app/_components/Socials";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -21,19 +20,14 @@ const mons = Montserrat({
 
 export default function Home() {
   const router = useRouter();
-  const [searchValue, setSearchValue] = useState("");
 
-  function handleSearch(value: string) {
-    console.log(value);
-    setSearchValue(value);
-  }
   return (
     <main>
       <section className="min-h-screen bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
         <Header />
 
         <div className={`${mons.className} pt-30 flex justify-end px-5`}>
-          <SearchBar onSearch={handleSearch} />
+          <SearchBar />
         </div>
 
         <div

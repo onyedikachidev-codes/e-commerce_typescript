@@ -1,19 +1,38 @@
 "use client";
 
+import { ChangeEvent } from "react";
 import { CiSearch } from "react-icons/ci";
 
-import NavModal from "./NavModal";
-import { useSearch } from "../_hooks/useSearch";
-
 export interface SearchProps {
-  onSearch: (value: string) => void;
+  value: string;
+  setValue: (value: string) => void;
+  errorText?: string;
+  setErrorText: (value: string) => void;
 }
 
-export default function SearchBar() {
-  const { modalRef, value, handleSearch, errorText, showModal, data } =
-    useSearch();
+export default function SearchBig({
+  value,
+  errorText,
+  setValue,
+  setErrorText,
+}: SearchProps) {
+  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    const { target } = e;
+    setValue(target.value);
+
+    if (target.value.length < 4) {
+      setErrorText("Please enter at least 4 characters.");
+    } else {
+      setErrorText("");
+    }
+
+    if (target.value.length < 1) {
+      setErrorText("");
+    }
+  }
+
   return (
-    <div className="flex flex-col gap-2" ref={modalRef}>
+    <div className="flex flex-col gap-2">
       <div className="relative w-56">
         <input
           type="text"
@@ -32,16 +51,6 @@ export default function SearchBar() {
           {errorText}
         </p>
       )}
-      <NavModal
-        isOpen={showModal}
-        uniqueStyles="absolute translate-y-16 -translate-x-16"
-      >
-        {data?.map((product) => (
-          <div key={product.id} className="border-b p-2">
-            {product.title}
-          </div>
-        ))}
-      </NavModal>
     </div>
   );
 }
