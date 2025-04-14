@@ -9,3 +9,12 @@ export const fetchSearchedProducts = async (query: string) => {
     product.title.toLowerCase().includes(query.toLowerCase())
   );
 };
+
+export const fetchSortedProducts = async (value: string) => {
+  const { data }: AxiosResponse<ProductListingProps[]> = await axios.get(
+    "https://fakestoreapi.com/products"
+  );
+  return data.filter(
+    (product) => product.category?.toLowerCase() === value.toLowerCase()
+  );
+};

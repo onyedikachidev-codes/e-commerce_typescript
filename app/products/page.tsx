@@ -12,6 +12,8 @@ import Spinner from "../_components/Spinner";
 import SearchBig from "../_components/SearchBig";
 import { useDebounce } from "../_hooks/useDebounce";
 import { fetchSearchedProducts } from "../_lib/actions";
+import Sort from "../_components/Sort";
+import { sortOptions } from "../_lib/constants";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -33,6 +35,8 @@ export default function Page() {
   const [errorText, setErrorText] = useState("");
 
   const debouncedSearch = useDebounce(value, 700);
+  const isSearching =
+    value !== "Search products, Brands and Categories" && value.length >= 4;
 
   const { data: filteredProducts } = useQuery({
     queryKey: ["search", debouncedSearch],
@@ -72,40 +76,20 @@ export default function Page() {
         />
       </div>
       <div
-        className={`${mons.className} flex justify-between items-center border-b border-gray-300 py-4  mx-7 text-xl font-semibold`}
+        className={`${mons.className} flex justify-between items-center border-b border-gray-300 py-4  mx-7 text-xl `}
       >
-        <h2>
+        <h2 className="font-semibold">
           Shop with Trivela
           <span className="font-medium text-gray-600 text-lg">
             (&nbsp;{totalItems} products found )
           </span>
         </h2>
-        <div className="border px-2.5 py-3 rounded-lg font-normal text-sm flex gap-8 items-center cursor-pointer focus:border-blue-400">
-          <p>Sort By</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 9.75V10.5"
-            />
-          </svg>
-        </div>
+        <Sort options={sortOptions} />
       </div>
       <div
         className={`${mons.className} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
       >
-        {(value !== "Search products, Brands and Categories" &&
-        value.length >= 4
-          ? filteredProducts
-          : products
-        )?.map((product) => (
+        {(isSearching ? filteredProducts : products)?.map((product) => (
           <ProductListingItem key={product.id} {...product} />
         ))}
       </div>
