@@ -8,3 +8,8 @@ export interface ProductListingProps {
   category?: string;
   rating: { rate: number; count: number };
 }
+
+export interface LoginProps {
+  email: string;
+  password: string;
+}

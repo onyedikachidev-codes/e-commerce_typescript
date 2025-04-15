@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import axios, { AxiosResponse } from "axios";
 import { ProductListingProps } from "../_models/item";
 import ProductListingItem from "../_components/ProductListingItem";
 import Header from "../_components/Header";
@@ -11,9 +10,14 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../_components/Spinner";
 import SearchBig from "../_components/SearchBig";
 import { useDebounce } from "../_hooks/useDebounce";
-import { fetchSearchedProducts } from "../_lib/actions";
+import {
+  fetchfilteredProducts,
+  fetchProducts,
+  fetchSortedProducts,
+} from "../_lib/actions";
 import Sort from "../_components/Sort";
 import { sortOptions } from "../_lib/constants";
+import { useSearchParams } from "next/navigation";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -22,29 +26,13 @@ const mons = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-const fetchProducts = async (): Promise<ProductListingProps[]> => {
-  const res: AxiosResponse<ProductListingProps[]> = await axios.get(
-    "https://fakestoreapi.com/products"
-  );
-
-  return res.data;
-};
-
 export default function Page() {
-  const [value, setValue] = useState("Search products, Brands and Categories");
+  const [value, setValue] = useState("Search products, brands and categories");
   const [errorText, setErrorText] = useState("");
+  const searchParams = useSearchParams();
+  const sortBy = searchParams.get("sortBy");
 
   const debouncedSearch = useDebounce(value, 700);
-  const isSearching =
-    value !== "Search products, Brands and Categories" && value.length >= 4;
-
-  const { data: filteredProducts } = useQuery({
-    queryKey: ["search", debouncedSearch],
-    queryFn: () => fetchSearchedProducts(debouncedSearch),
-    enabled:
-      debouncedSearch.length >= 4 &&
-      debouncedSearch !== "Search products, Brands and Categories",
-  });
 
   const {
     data: products,
@@ -56,12 +44,40 @@ export default function Page() {
     queryFn: fetchProducts,
   });
 
+  const { data: sortedProducts, isLoading: searchLoader } = useQuery({
+    queryKey: ["sort", sortBy],
+    queryFn: () =>
+      sortBy && sortBy !== "" ? fetchSortedProducts(sortBy) : products,
+    enabled: !!sortBy,
+  });
+
+  const { data: filteredProducts } = useQuery({
+    queryKey: ["search", debouncedSearch, sortedProducts],
+    queryFn: () =>
+      fetchfilteredProducts(
+        sortedProducts?.length ? sortedProducts : products ?? [],
+        debouncedSearch
+      ),
+    enabled:
+      debouncedSearch.length >= 4 &&
+      debouncedSearch !== "Search products, brands and categories" &&
+      !!products?.length,
+  });
+
   const totalItems =
-    value === "Search products, Brands and Categories" || value.length < 4
-      ? products?.length ?? 0
-      : filteredProducts?.length ?? 0;
+    value !== "Search products, brands and categories" && value.length >= 4
+      ? filteredProducts?.length ?? 0
+      : (sortedProducts?.length ?? 0) || (products?.length ?? 0);
+
+  const displayProducts =
+    (filteredProducts ?? []).length >= 1
+      ? filteredProducts
+      : sortedProducts?.length
+      ? sortedProducts
+      : products;
 
   if (isLoading) return <Spinner />;
+  if (searchLoader) return <Spinner />;
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
@@ -89,7 +105,7 @@ export default function Page() {
       <div
         className={`${mons.className} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
       >
-        {(isSearching ? filteredProducts : products)?.map((product) => (
+        {displayProducts?.map((product) => (
           <ProductListingItem key={product.id} {...product} />
         ))}
       </div>

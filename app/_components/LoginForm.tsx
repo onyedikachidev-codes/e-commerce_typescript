@@ -1,19 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import SocialSignIn from "@/app/_components/SocialSignIn";
+import { useLogin } from "../auth/useLogin";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { login, isPending } = useLogin();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
   };
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (!email || !password) return;
+    login({ email, password });
+  }
 
   return (
     <div className="w-full">
@@ -36,6 +44,7 @@ function LoginForm() {
                 name="email"
                 value={email}
                 placeholder="Enter your email"
+                autoComplete="username"
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm text-[#06080B] placeholder-gray-600 outline-none"
