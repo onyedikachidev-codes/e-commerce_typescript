@@ -11,6 +11,7 @@ import "@/app/_styles/globals.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -63,6 +64,26 @@ export default function RootLayout({
         <Provider store={store}>
           <QueryClientProvider client={queryClient}>
             {children}
+            <Toaster
+              position="top-center"
+              gutter={12}
+              containerStyle={{ margin: "8px" }}
+              toastOptions={{
+                success: {
+                  duration: 3000,
+                },
+                error: {
+                  duration: 5000,
+                },
+                style: {
+                  fontSize: "16px",
+                  maxWidth: "500px",
+                  padding: "16px 24px",
+                  backgroundColor: "var(--color-primary-50)",
+                  color: "black",
+                },
+              }}
+            />
           </QueryClientProvider>
         </Provider>
       </body>

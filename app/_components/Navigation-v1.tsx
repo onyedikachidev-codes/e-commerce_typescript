@@ -13,8 +13,6 @@ import Signup from "@/app/_components/Signup";
 import Login from "@/app/_components/Login";
 import NavModal from "@/app/_components/NavModal";
 import { useUser } from "../_auth/useUser";
-import Logout from "./Logout";
-import UserIcon from "./UserIcon";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -29,6 +27,8 @@ export default function Navigation() {
   const [showModal, setShowModal] = useState(false);
   const { user } = useUser();
 
+  const [isUserOpen, setIsUserOpen] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
   useEffect(() => {
     // Add or remove overflow: hidden on the body
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -125,14 +125,43 @@ export default function Navigation() {
         </div>
         <div className={`${mons.className} flex gap-4`}>
           {user ? (
-            <div className="flex items-center gap-2">
-              <UserIcon />
-              <Logout />
+            <div
+              className="relative"
+              onClick={() => setShowUserModal(true)}
+              onMouseLeave={() => setShowUserModal(false)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-10 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+              <NavModal
+                isOpen={showUserModal}
+                uniqueStyles="absolute -inset-x-7 bg-blue-200"
+              >
+                <div>
+                  <h2>Onyedikachi</h2>
+                  <h3>{user.email}</h3>
+                </div>
+              </NavModal>
             </div>
           ) : (
             <>
-              <Signup />
-              <Login />
+              <div>
+                <Signup />
+              </div>
+              <div>
+                <Login />
+              </div>{" "}
             </>
           )}
         </div>

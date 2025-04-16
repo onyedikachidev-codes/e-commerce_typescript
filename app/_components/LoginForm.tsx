@@ -4,7 +4,8 @@ import { FormEvent, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import SocialSignIn from "@/app/_components/SocialSignIn";
-import { useLogin } from "../auth/useLogin";
+import { useLogin } from "../_auth/useLogin";
+import SpinnerMini from "./SpinnerMini";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,15 @@ function LoginForm() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
   }
 
   return (
@@ -30,7 +39,7 @@ function LoginForm() {
           Login <span className="hidden md:inline">to your account</span>
         </p>
 
-        <form className="-translate-y-[2.5rem]">
+        <form className="-translate-y-[2.5rem]" onSubmit={handleSubmit}>
           <div className=" mt-6 flex flex-col gap-2">
             <div className="mb-4">
               <label
@@ -44,6 +53,7 @@ function LoginForm() {
                 name="email"
                 value={email}
                 placeholder="Enter your email"
+                disabled={isPending}
                 autoComplete="username"
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -64,6 +74,7 @@ function LoginForm() {
                   name="password"
                   placeholder="Enter your password"
                   value={password}
+                  disabled={isPending}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm placeholder-gray-600 outline-none"
@@ -91,7 +102,7 @@ function LoginForm() {
               type="submit"
               className="ml[16%] md:ml-[20%] mt-4 inline-block w-11/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10"
             >
-              Login
+              {!isPending ? "Login" : <SpinnerMini />}
             </button>
           </div>
         </form>
