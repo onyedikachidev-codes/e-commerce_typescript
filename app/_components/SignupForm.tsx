@@ -1,18 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FormData } from "../_models/item";
+import { useSignup } from "../_auth/useSignup";
 
 function SignupForm() {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
-
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isPasswordConfirmVisible, setIsPasswordConfirmVisible] =
     useState<boolean>(false);
+
+  const { signup, isPending } = useSignup();
+  const { register, formState, getValues, handleSubmit, reset } =
+    useForm<FormData>();
+  const { errors } = formState;
+
+  const onSubmit: SubmitHandler<FormData> = ({ fullName, email, password }) => {
+    signup(
+      { email, fullName, password },
+      {
+        onSettled: () => {
+          reset({
+            fullName,
+            email,
+            password,
+          });
+        },
+      }
+    );
+  };
 
   const togglePasswordVisibility = (): void => {
     setIsPasswordVisible((prevState) => !prevState);
@@ -29,43 +47,62 @@ function SignupForm() {
           Create an account
         </p>
 
-        <form className="-translate-y-[2.5rem]">
+        <form
+          className="-translate-y-[2.5rem]"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className=" mt-8 flex flex-col gap-4">
-            <div className="">
+            <div className="flex flex-col">
               <input
-                className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm text-[#06080B] placeholder-gray-600 outline-none"
                 type="text"
-                name="name"
-                value={name}
+                id="fullName"
                 placeholder="Enter your name"
-                onChange={(e) => setName(e.target.value)}
-                required
+                {...register("fullName", {
+                  required: "This field is required",
+                })}
+                disabled={isPending}
+                className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm text-[#06080B] placeholder-gray-600 outline-none"
               />
+              {errors.fullName && (
+                <p className="text-red-600">{errors.fullName.message}</p>
+              )}
             </div>
-
-            <div>
+            <div className="flex flex-col">
               <input
                 type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="email"
                 placeholder="Enter your email"
-                required
+                {...register("email", {
+                  required: "This field is required",
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Please provide a valid email address",
+                  },
+                })}
+                disabled={isPending}
                 className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm text-[#06080B] placeholder-gray-600 outline-none"
               />
+              {errors.email && (
+                <p className="text-red-600">{errors.email.message}</p>
+              )}
             </div>
-
-            <div>
+            <div className="flex flex-col">
               <div className="relative">
                 <input
                   type={isPasswordVisible ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  id="password"
                   placeholder="Create a password"
-                  required
+                  {...register("password", {
+                    required: "This field is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password needs a minimum of 8 characters",
+                    },
+                  })}
+                  disabled={isPending}
                   className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm placeholder-gray-600 outline-none"
                 />
+
                 <div
                   className="absolute inset-y-0 right-2 flex cursor-pointer items-center text-gray-600"
                   onClick={() => togglePasswordVisibility()}
@@ -77,19 +114,26 @@ function SignupForm() {
                   )}
                 </div>
               </div>
+              {errors.password && (
+                <p className="text-red-600">{errors.password.message}</p>
+              )}
             </div>
-
-            <div>
+            <div className="flex flex-col">
               <div className="relative">
                 <input
                   type={isPasswordConfirmVisible ? "text" : "password"}
-                  name="confirmPassword"
+                  id="confirmPassword"
                   placeholder="Confirm password"
-                  required
-                  value={passwordConfirm}
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                  {...register("confirmPassword", {
+                    required: "This field is required",
+                    validate: (value) =>
+                      value === getValues().password ||
+                      "Passwords need to match",
+                  })}
+                  disabled={isPending}
                   className="w-[100%] rounded-lg border border-blue-300 bg-blue-100 p-[0.625rem] text-sm placeholder-gray-600 outline-none"
                 />
+
                 <div
                   className="absolute inset-y-0 right-2 flex cursor-pointer items-center text-gray-600"
                   onClick={() => togglePasswordConfirmVisibility()}
@@ -102,7 +146,9 @@ function SignupForm() {
                 </div>
               </div>
             </div>
-
+            {errors.confirmPassword && (
+              <p className="text-red-600">{errors.confirmPassword.message}</p>
+            )}
             <div className="">
               <input type="checkbox" name="termsAndConditions" required />
               <label htmlFor="termsAndConditions" className="pl-2">
