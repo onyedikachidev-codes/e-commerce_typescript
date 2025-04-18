@@ -1,10 +1,11 @@
 import React from "react";
-import { CiStar } from "react-icons/ci";
+
 import { ProductListingProps } from "../_models/item";
 import Link from "next/link";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { addItems } from "../store/carts";
+import StarRating from "./StarRating";
 
 export default function ProductListingItem({
   id,
@@ -15,7 +16,7 @@ export default function ProductListingItem({
   rating,
 }: ProductListingProps): React.JSX.Element {
   const dispatch = useDispatch();
-  const { count } = rating;
+  const { count, rate } = rating;
 
   function handleAddToCart() {
     const newItem = {
@@ -53,13 +54,7 @@ export default function ProductListingItem({
               ${price.toFixed(2)}
             </h4>
             <div className="flex gap-1 mb-2.5">
-              <div className="flex">
-                <CiStar className="h-5 w-5 text-yellow-500" />
-                <CiStar className="h-5 w-5 text-yellow-500" />
-                <CiStar className="h-5 w-5 text-yellow-500" />
-                <CiStar className="h-5 w-5 text-yellow-500" />
-                <CiStar className="h-5 w-5 text-yellow-500" />
-              </div>
+              <StarRating rating={rate} />
               <span className="text-gray-600 text-sm px-1">({count})</span>
             </div>
           </div>

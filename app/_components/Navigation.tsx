@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Signup from "@/app/_components/Signup";
 import Login from "@/app/_components/Login";
-import NavModal from "@/app/_components/NavModal";
 import { useUser } from "../_auth/useUser";
 import Logout from "./Logout";
 import UserIcon from "./UserIcon";
@@ -26,7 +25,6 @@ const mons = Montserrat({
 export default function Navigation() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const { user } = useUser();
 
   useEffect(() => {
@@ -63,38 +61,13 @@ export default function Navigation() {
             </Link>
           </li>
 
-          <li
-            className="relative cursor-pointer text-gray-800 hover:text-gray-500 transition duration-300"
-            onMouseEnter={() => setShowModal(true)}
-            onMouseLeave={() => setShowModal(false)}
-          >
-            <Link href="" className="group ">
-              <span className="">Categories</span>
+          <li>
+            <Link href="#best" className="relative group">
+              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
+                Bestsellers
+              </span>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <NavModal
-              isOpen={showModal}
-              uniqueStyles="fixed translate-y-0 -translate-x-32"
-            >
-              <div className="lowercase flex justify-between">
-                <div className="border-r border-gray-400 pr-4">
-                  <div className="hover:text-blue-300 transition-all duration-200">
-                    men&apos;s clothing
-                  </div>
-                  <div className="hover:text-blue-300 transition-all duration-200">
-                    jewelery
-                  </div>
-                </div>
-                <div className="pl-4">
-                  <div className="hover:text-blue-300 transition-all duration-200">
-                    electronics
-                  </div>
-                  <div className="hover:text-blue-300 transition-all duration-200">
-                    women&apos;s clothing
-                  </div>
-                </div>
-              </div>
-            </NavModal>
           </li>
 
           <li>

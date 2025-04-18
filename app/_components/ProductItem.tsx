@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { CiStar } from "react-icons/ci";
+import StarRating from "./StarRating";
 
 interface ProductProps {
   imageSrc: string;
@@ -40,8 +40,8 @@ export default function ProductItem({
         <div className="w-full border-[1.5px] border-t border-gray-300 my-2"></div>
 
         <div className="flex items-center justify-between w-full">
-          <div className="flex items-center">
-            <CiStar className="h-5 w-5 text-yellow-500 mr-1" />
+          <div className="flex items-center gap-2.5">
+            <StarRating rating={rating} />
             <span className="text-gray-600 text-sm px-1 border-l border-r">
               {rating}
             </span>

@@ -53,7 +53,11 @@ export default function Home() {
         <Socials />
       </section>
 
+      <div id="best" className="">
+        &nbsp;
+      </div>
       <BestSellers />
+
       <div id="about" className="">
         &nbsp;
       </div>
