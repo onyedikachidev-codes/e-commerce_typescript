@@ -3,16 +3,20 @@ import UpdateItemQuantity from "./UpdateItemQuantity";
 import DeleteItem from "./DeleteItem";
 
 type CartItemProps = {
-  item: {
-    productId: number;
-    name: string;
-    quantity: number;
-    totalPrice: number;
-  };
+  productId: number;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
 };
 
-export default function CartItem({ item }: CartItemProps) {
-  const { productId, name, quantity, totalPrice } = item;
+export default function CartItem({
+  productId,
+  name,
+  quantity,
+  unitPrice,
+  totalPrice,
+}: CartItemProps) {
   console.log(productId);
 
   return (

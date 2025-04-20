@@ -14,6 +14,8 @@ import Login from "@/app/_components/Login";
 import { useUser } from "../_auth/useUser";
 import Logout from "./Logout";
 import UserIcon from "./UserIcon";
+import { useSelector } from "react-redux";
+import { getTotalCartQuantity } from "../store/carts";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -26,6 +28,7 @@ export default function Navigation() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
+  const totalQuantity = useSelector(getTotalCartQuantity);
 
   useEffect(() => {
     // Add or remove overflow: hidden on the body
@@ -93,8 +96,13 @@ export default function Navigation() {
       </div>
 
       <div className="flex justify-between items-center gap-12">
-        <div className="cursor-pointer">
+        <div className="cursor-pointer" onClick={() => router.push("/cart")}>
           <FaShoppingCart className="h-8 w-8" />
+          {totalQuantity > 0 && (
+            <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              {totalQuantity}
+            </span>
+          )}
         </div>
         <div className={`${mons.className} flex gap-4`}>
           {user ? (

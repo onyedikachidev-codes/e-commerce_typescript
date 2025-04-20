@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
+import toast from "react-hot-toast";
 
 interface CartItem {
-  cartId: number;
+  productId: number;
   title: string;
   quantity: number;
   unitPrice: number;
@@ -16,7 +17,7 @@ interface InitialStateProps {
 const initialState: InitialStateProps = {
   cart: [
     {
-      cartId: 1,
+      productId: 1,
       title: "Bag",
       quantity: 2,
       unitPrice: 200,
@@ -29,23 +30,35 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItems(state, action) {
-      state.cart.push(action.payload);
+    addItems(state, action: PayloadAction<CartItem>) {
+      const newItem = action.payload;
+
+      const existingItem = state.cart.find(
+        (item) => item.productId === newItem.productId
+      );
+
+      if (!existingItem) {
+        state.cart.push(newItem);
+      } else {
+        toast.error("Item already exists in cart");
+      }
     },
-    deleteItems(state, action) {
-      //playload is the cartId
-      state.cart = state.cart.filter((item) => item.cartId !== action.payload);
+    deleteItems(state, action: PayloadAction<number>) {
+      //playload is the productId
+      state.cart = state.cart.filter(
+        (item) => item.productId !== action.payload
+      );
     },
-    increaseItemQuantity(state, action) {
-      //The payload is the cartId
-      const item = state.cart.find((item) => item.cartId === action.payload);
+    increaseItemQuantity(state, action: PayloadAction<number>) {
+      //The payload is the productId
+      const item = state.cart.find((item) => item.productId === action.payload);
       if (item) {
         item.quantity++;
         item.totalPrice = item.quantity * item.unitPrice;
       }
     },
-    decreaseItemQuantity(state, action) {
-      const item = state.cart.find((item) => item.cartId === action.payload);
+    decreaseItemQuantity(state, action: PayloadAction<number>) {
+      const item = state.cart.find((item) => item.productId === action.payload);
       if (item) {
         item.quantity--;
         item.totalPrice = item.quantity * item.unitPrice;
@@ -68,3 +81,5 @@ export const {
 export default cartSlice.reducer;
 
 export const getCart = (state: RootState) => state.cart.cart;
+export const getTotalCartQuantity = (state: RootState) =>
+  state.cart.cart.reduce((total, item) => total + item.quantity, 0);

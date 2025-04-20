@@ -20,19 +20,17 @@ export default function ProductListingItem({
 
   function handleAddToCart() {
     const newItem = {
-      cartId: id,
+      productId: id || 0,
       title,
       quantity: 1,
       unitPrice: price,
       totalPrice: price * 1,
     };
+
     dispatch(addItems(newItem));
   }
   return (
-    <Link
-      href={`/products/${id}`}
-      className="relative group flex flex-col gap-10 justify-between items-start p-3 transition-all cursor-pointer hover:scale-[102%] duration-200 ease-in-out rounded-md shadow-md hover:shadow-lg"
-    >
+    <div className="relative group flex flex-col gap-10 justify-between items-start p-3 transition-all cursor-pointer hover:scale-[102%] duration-200 ease-in-out rounded-md shadow-md hover:shadow-lg">
       <div className="relative w-full h-64">
         <img
           src={image}
@@ -63,6 +61,6 @@ export default function ProductListingItem({
           Add to cart
         </Button>
       </div>
-    </Link>
+    </div>
   );
 }
