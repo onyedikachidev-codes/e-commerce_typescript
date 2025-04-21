@@ -6,6 +6,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FormData } from "../_models/item";
 import { useSignup } from "../_auth/useSignup";
+import Divider from "./Divider";
+import SocialSignup from "./SocialSignup";
 
 function SignupForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -51,7 +53,7 @@ function SignupForm() {
           className="-translate-y-[2.5rem]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className=" mt-8 flex flex-col gap-4">
+          <div className=" mt-5 flex flex-col gap-4">
             <div className="flex flex-col">
               <input
                 type="text"
@@ -152,12 +154,11 @@ function SignupForm() {
             <div className="">
               <input type="checkbox" name="termsAndConditions" required />
               <label htmlFor="termsAndConditions" className="pl-2">
-                I have read, understood and I agree to Helprr&apos;s Privacy
-                Policy, and Terms and conditions.
+                By signing up, you agree to our T&C.
               </label>
             </div>
           </div>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 lg:mb-2">
+          <div className="mt-4 flex flex-col items-center justify-center gap-3">
             <button
               type="submit"
               className="xl:ml-[13%] md:ml-[13%] mt-4 inline-block w-10/12 md:w-8/12 xl:w-8/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10"
@@ -167,6 +168,12 @@ function SignupForm() {
             <button className="text-blue-700">Already have an account?</button>
           </div>
         </form>
+
+        <div className="-translate-y-[2rem] pb-3">
+          <Divider />
+
+          <SocialSignup />
+        </div>
       </div>
     </div>
   );

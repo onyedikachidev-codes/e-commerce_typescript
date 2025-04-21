@@ -3,9 +3,10 @@
 import { FormEvent, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import SocialSignIn from "@/app/_components/SocialSignIn";
 import { useLogin } from "../_auth/useLogin";
 import SpinnerMini from "./SpinnerMini";
+import Divider from "./Divider";
+import SocialSignup from "./SocialSignup";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -100,14 +101,18 @@ function LoginForm() {
           <div className="mx-auto mt-4 flex w-[70%] flex-col items-center justify-center gap-3">
             <button
               type="submit"
-              className="ml[16%] md:ml-[20%] mt-4 inline-block w-11/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10"
+              className="ml[16%] md:ml-[20%] mt-4 inline-block w-11/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10 mb-1.5"
             >
               {!isPending ? "Login" : <SpinnerMini />}
             </button>
           </div>
         </form>
 
-        <SocialSignIn />
+        <div className="-translate-y-[2rem] pb-3">
+          <Divider />
+
+          <SocialSignup />
+        </div>
       </div>
     </div>
   );

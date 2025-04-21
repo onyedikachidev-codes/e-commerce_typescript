@@ -15,15 +15,7 @@ interface InitialStateProps {
 }
 
 const initialState: InitialStateProps = {
-  cart: [
-    {
-      productId: 1,
-      title: "Bag",
-      quantity: 2,
-      unitPrice: 200,
-      totalPrice: 400,
-    },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({

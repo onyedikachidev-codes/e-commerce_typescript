@@ -16,6 +16,11 @@ import Logout from "./Logout";
 import UserIcon from "./UserIcon";
 import { useSelector } from "react-redux";
 import { getTotalCartQuantity } from "../store/carts";
+import { Session } from "next-auth";
+
+interface Props {
+  session: Session | null;
+}
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -24,10 +29,10 @@ const mons = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export default function Navigation() {
+export default function Navigation({ session }: Props) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUser();
+  const { user: supabaseUser } = useUser();
   const totalQuantity = useSelector(getTotalCartQuantity);
 
   useEffect(() => {
@@ -42,6 +47,8 @@ export default function Navigation() {
   const handleButtonClick = (): void => {
     window.location.href = "mailto:nwangumabimma@gmail.com";
   };
+
+  const user = session?.user || supabaseUser;
 
   return (
     <nav className="relative flex justify-between items-center md:px-10 px-5 max-w-full">
@@ -96,7 +103,10 @@ export default function Navigation() {
       </div>
 
       <div className="flex justify-between items-center gap-12">
-        <div className="cursor-pointer" onClick={() => router.push("/cart")}>
+        <div
+          className="cursor-pointer relative"
+          onClick={() => router.push("/cart")}
+        >
           <FaShoppingCart className="h-8 w-8" />
           {totalQuantity > 0 && (
             <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
@@ -107,7 +117,15 @@ export default function Navigation() {
         <div className={`${mons.className} flex gap-4`}>
           {user ? (
             <div className="flex items-center gap-2">
-              <UserIcon />
+              {session?.user ? (
+                <img
+                  src={session?.user?.image ?? undefined}
+                  alt="user_image"
+                  className="h-10 rounded-full"
+                />
+              ) : (
+                <UserIcon />
+              )}
               <Logout />
             </div>
           ) : (

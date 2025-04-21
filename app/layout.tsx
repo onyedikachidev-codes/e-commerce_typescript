@@ -9,9 +9,11 @@ import {
 } from "next/font/google";
 import "@/app/_styles/globals.css";
 import { Provider } from "react-redux";
-import store from "./store";
+import { store, persistor } from "./store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import { PersistGate } from "redux-persist/integration/react";
+import { SessionProvider } from "next-auth/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,29 +64,33 @@ export default function RootLayout({
         className={`${poppins.variable} ${cursive.variable} ${mons.variable} ${dancing.variable} antialiased`}
       >
         <Provider store={store}>
-          <QueryClientProvider client={queryClient}>
-            {children}
-            <Toaster
-              position="top-center"
-              gutter={12}
-              containerStyle={{ margin: "8px" }}
-              toastOptions={{
-                success: {
-                  duration: 3000,
-                },
-                error: {
-                  duration: 5000,
-                },
-                style: {
-                  fontSize: "16px",
-                  maxWidth: "500px",
-                  padding: "16px 24px",
-                  backgroundColor: "var(--color-primary-50)",
-                  color: "black",
-                },
-              }}
-            />
-          </QueryClientProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <SessionProvider>
+              <QueryClientProvider client={queryClient}>
+                {children}
+                <Toaster
+                  position="top-center"
+                  gutter={12}
+                  containerStyle={{ margin: "8px" }}
+                  toastOptions={{
+                    success: {
+                      duration: 3000,
+                    },
+                    error: {
+                      duration: 5000,
+                    },
+                    style: {
+                      fontSize: "16px",
+                      maxWidth: "500px",
+                      padding: "16px 24px",
+                      backgroundColor: "var(--color-primary-50)",
+                      color: "black",
+                    },
+                  }}
+                />
+              </QueryClientProvider>
+            </SessionProvider>
+          </PersistGate>
         </Provider>
       </body>
     </html>
