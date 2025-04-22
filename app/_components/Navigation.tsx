@@ -17,6 +17,8 @@ import UserIcon from "./UserIcon";
 import { useSelector } from "react-redux";
 import { getTotalCartQuantity } from "../store/carts";
 import { Session } from "next-auth";
+import LogoutOAuth from "./LogoutOAuth";
+import { signOut } from "next-auth/react";
 
 interface Props {
   session: Session | null;
@@ -126,7 +128,11 @@ export default function Navigation({ session }: Props) {
               ) : (
                 <UserIcon />
               )}
-              <Logout />
+              {session?.user ? (
+                <LogoutOAuth onClick={() => signOut()} />
+              ) : (
+                <Logout />
+              )}
             </div>
           ) : (
             <>
