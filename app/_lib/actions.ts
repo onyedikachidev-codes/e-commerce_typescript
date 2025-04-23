@@ -35,3 +35,26 @@ export const fetchfilteredProducts = async (
     product.title.toLowerCase().includes(query.toLowerCase())
   );
 };
+
+export const fetchPaginatedProducts = async (
+  page: number,
+  limit: number = 8
+): Promise<{
+  data: ProductListingProps[];
+  total: number;
+  totalPages: number;
+}> => {
+  const res: AxiosResponse<ProductListingProps[]> = await axios.get(
+    "https://fakestoreapi.com/products"
+  );
+
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const paginated = res.data.slice(start, end);
+
+  return {
+    data: paginated,
+    total: res.data.length,
+    totalPages: Math.ceil(res.data.length / limit),
+  };
+};

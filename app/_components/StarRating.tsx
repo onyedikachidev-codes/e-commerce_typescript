@@ -10,10 +10,10 @@ type StarRatingProps = {
 const StarRating: React.FC<StarRatingProps> = ({
   rating,
   maxStars = 5,
-  size = 20,
+  size = 14,
 }) => {
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-[2.5px]">
       {Array.from({ length: maxStars }, (_, i) => {
         const current = i + 1;
 
@@ -38,7 +38,7 @@ const StarRating: React.FC<StarRatingProps> = ({
               className="absolute top-0 left-0 overflow-hidden"
               style={{ width: `${fillPercent}%` }}
             >
-              <Star size={size} className="text-yellow-500 fill-yellow-500" />
+              <Star size={size} className="text-purple-500 fill-purple-500" />
             </div>
           </div>
         );

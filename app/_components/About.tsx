@@ -12,9 +12,12 @@ export default function About() {
   return (
     <>
       <div className="mx-20 text-gray-800">
-        <h2 className="uppercase text-gray-700 text-2xl font-semibold">
-          About Trivela
-        </h2>
+        <div className="my-8">
+          <h2 className="text-2xl font-semibold text-[#2C3E50]">
+            About Trivela
+          </h2>
+          <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
+        </div>
         <p className="lg:max-w-[97%] md:max-w-[97%] max-w-full mt-2 text-xl font-medium ">
           At Trivela, we&apos;re passionate about bringing you stylish and
           affordable fashion that fits your everyday lifestyle. Born from a love

@@ -6,7 +6,7 @@ export default function ProductGrid() {
     {
       imageSrc: "/bucket-hat.jpg",
       altText: "Man wearing a sports bucket hat",
-      title: "Sports bucket hat",
+      title: "Bucket hat",
       price: 12.0,
       rating: 4.9,
     },

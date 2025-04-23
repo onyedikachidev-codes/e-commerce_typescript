@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 const base =
-  "hidden lg:block py-[0.4rem] px-7 cursor-pointer rounded-md text-base transition rounded-md shadow-md hover:shadow-lg transition-shadow duration-300";
+  "hidden lg:block py-[0.4rem] px-7 cursor-pointer rounded-md text-base transition-all shadow-md hover:shadow-lg duration-300";
 
 const styles = {
   signup:
@@ -18,7 +18,7 @@ const styles = {
     "  relative py-[0.7rem] bg-white -translate-y-[45px] translate-x-[2.5px]",
   cart:
     base +
-    " w-full py-[0.7rem] text-gray-200 bg-blue-600 transition-transform hover:scale-105 duration-200 ease-in-out z-10",
+    " w-full  transition-transform hover:scale-105 duration-200 ease-in-out z-10",
 };
 
 type ButtonVariant = keyof typeof styles;

@@ -76,7 +76,7 @@ export default function Navigation({ session }: Props) {
           <li>
             <Link href="#best" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                Bestsellers
+                New Arrivals
               </span>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>

@@ -18,6 +18,7 @@ import {
 import Sort from "../_components/Sort";
 import { sortOptions } from "../_lib/constants";
 import { useSearchParams } from "next/navigation";
+import HeaderSlider from "../_components/HeaderSlider";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ const mons = Montserrat({
 });
 
 export default function Page() {
-  const [value, setValue] = useState("Search products, brands and categories");
+  const [value, setValue] = useState("Search products and categories");
   const [errorText, setErrorText] = useState("");
   const searchParams = useSearchParams();
   const sortBy = searchParams.get("sortBy");
@@ -64,10 +65,10 @@ export default function Page() {
       !!products?.length,
   });
 
-  const totalItems =
-    value !== "Search products, brands and categories" && value.length >= 4
-      ? filteredProducts?.length ?? 0
-      : (sortedProducts?.length ?? 0) || (products?.length ?? 0);
+  // const totalItems =
+  //   value !== "Search products, brands and categories" && value.length >= 4
+  //     ? filteredProducts?.length ?? 0
+  //     : (sortedProducts?.length ?? 0) || (products?.length ?? 0);
 
   const displayProducts =
     (filteredProducts ?? []).length >= 1
@@ -81,25 +82,21 @@ export default function Page() {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <>
+    <div className="bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
       <Header />
-      <div className="mt-24 flex justify-center items-center">
+      <div className="pt-24 flex justify-center items-center">
+        <HeaderSlider />
+      </div>
+      <div
+        className={`${mons.className} flex justify-between items-center  py-4 mt-3 mx-7 text-xl `}
+      >
+        <h2 className="font-semibold font-xl">Popular Products</h2>
         <SearchBig
           value={value}
           setValue={setValue}
           errorText={errorText}
           setErrorText={setErrorText}
         />
-      </div>
-      <div
-        className={`${mons.className} flex justify-between items-center border-b border-gray-300 py-4  mx-7 text-xl `}
-      >
-        <h2 className="font-semibold">
-          Shop with Trivela
-          <span className="font-medium text-gray-600 text-lg">
-            (&nbsp;{totalItems} products found )
-          </span>
-        </h2>
         <Sort options={sortOptions} />
       </div>
       <div
@@ -109,6 +106,6 @@ export default function Page() {
           <ProductListingItem key={product.id} {...product} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
