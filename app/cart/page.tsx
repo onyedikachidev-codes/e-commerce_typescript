@@ -5,13 +5,16 @@ import Link from "next/link";
 import { clearCart, getCart } from "../store/carts";
 
 import Header from "../_components/Header";
-import SearchBar from "../_components/SearchBar";
 import CartItem from "../_components/cart/CartItem";
 import EmptyCart from "../_components/cart/EmptyCart";
 
 export default function Page() {
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
+  const total = cart.reduce(
+    (acc, item) => acc + item.unitPrice * item.quantity,
+    0
+  );
 
   if (!cart.length) return <EmptyCart />;
 
@@ -19,29 +22,58 @@ export default function Page() {
     <main>
       <Header />
 
-      <section className="mt-20">
-        <SearchBar />
-
+      <section className="mt-20 ">
         <div className="px-4 py-3">
-          <Link href="/products">&larr; Back to menu</Link>
+          <Link href="/products" className="hover:text-blue-500 cursor-pointer">
+            &larr; Back to products
+          </Link>
 
-          <h2 className="mt-7 text-xl font-semibold">Cart</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse mt-12">
+              <thead>
+                <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                  <th className="py-3 px-6 text-left">Product</th>
+                  <th className="py-3 px-6 text-left">Price</th>
+                  <th className="py-3 px-6 text-left">Quantity</th>
+                  <th className="py-3 px-6 text-left">Total</th>
+                  <th className="py-3 px-6 text-left">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <CartItem
+                    productId={item.productId}
+                    name={item.title}
+                    quantity={item.quantity}
+                    totalPrice={item.totalPrice}
+                    unitPrice={item.unitPrice}
+                    key={item.productId}
+                    image={item.image}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <ul className="mt-3 divide-y divide-stone-200 border-b">
-            {cart.map((item) => (
-              <CartItem
-                productId={item.productId}
-                name={item.title}
-                quantity={item.quantity}
-                totalPrice={item.totalPrice}
-                unitPrice={item.unitPrice}
-                key={item.productId}
-              />
-            ))}
-          </ul>
-          <div className="mt-6 space-x-2">
-            <button>Order items</button>
-            <button onClick={() => dispatch(clearCart())}>Clear cart</button>
+          <div className="mt-10 flex justify-between items-start mx-5">
+            <button
+              className="px-3 py-2 border border-blue-600 hover:bg-blue-200 cursor-pointer rounded-md"
+              onClick={() => dispatch(clearCart())}
+            >
+              Clear cart
+            </button>
+
+            <div>
+              <div className="flex items-center gap-20 ">
+                <p className="text-lg">Subtotal</p>
+                <p className="font-semibold text-xl">
+                  ${Math.ceil(total).toFixed(2)}
+                </p>
+              </div>
+              <p className="text-sm text-gray-500 mt-1 font-normal">
+                Delivery fees not included yet.
+              </p>
+            </div>
           </div>
         </div>
       </section>

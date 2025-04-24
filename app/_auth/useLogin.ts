@@ -14,7 +14,7 @@ export function useLogin() {
     onSuccess: (user) => {
       queryClient.setQueryData(["user"], user.user);
       toast.success("It worked");
-      router.push("/products");
+      router.push("/");
     },
     onError: () => {
       toast.error("Provided email or password are incorrect");

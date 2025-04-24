@@ -8,6 +8,7 @@ type CartItemProps = {
   quantity: number;
   unitPrice: number;
   totalPrice: number;
+  image?: string;
 };
 
 export default function CartItem({
@@ -16,19 +17,24 @@ export default function CartItem({
   quantity,
   unitPrice,
   totalPrice,
+  image,
 }: CartItemProps) {
-  console.log(productId);
-
   return (
-    <li className="py-3 sm:flex sm:items-center sm:justify-between">
-      <p className="mb-1 sm:mb-0">
-        {quantity}&times; {name}
-      </p>
-      <div className="flex items-center justify-between sm:gap-6">
-        <p className="text-sm font-bold">{totalPrice}</p>
-        <UpdateItemQuantity productId={productId} />
+    <tr className="border-b border-gray-200 hover:bg-gray-100">
+      <td className="py-3 px-6 text-left flex gap-2.5 items-center">
+        <img src={image} alt="product_image" className="h-14 w-14" />
+        <h2>{name}</h2>
+      </td>
+      <td className="py-3 px-7 text-left">{unitPrice}</td>
+      <td className="py-3 px-4 text-left">
+        <UpdateItemQuantity productId={productId}>
+          <span>{quantity}</span>
+        </UpdateItemQuantity>
+      </td>
+      <td className="py-3 px-8 text-left">{totalPrice}</td>
+      <td className="py-3 px-6 text-left">
         <DeleteItem productId={productId} />
-      </div>
-    </li>
+      </td>
+    </tr>
   );
 }

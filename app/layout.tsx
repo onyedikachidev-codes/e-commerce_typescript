@@ -85,6 +85,7 @@ export default function RootLayout({
                       padding: "16px 24px",
                       backgroundColor: "var(--color-primary-50)",
                       color: "black",
+                      zIndex: 999999,
                     },
                   }}
                 />

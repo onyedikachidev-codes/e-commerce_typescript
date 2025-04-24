@@ -19,6 +19,8 @@ import Sort from "../_components/Sort";
 import { sortOptions } from "../_lib/constants";
 import { useSearchParams } from "next/navigation";
 import HeaderSlider from "../_components/HeaderSlider";
+import { useClientPagination } from "../_hooks/useClientPagination";
+import { Pagination } from "../_components/Pagination";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -30,10 +32,13 @@ const mons = Montserrat({
 export default function Page() {
   const [value, setValue] = useState("Search products and categories");
   const [errorText, setErrorText] = useState("");
+
   const searchParams = useSearchParams();
   const sortBy = searchParams.get("sortBy");
 
   const debouncedSearch = useDebounce(value, 700);
+  const initialPage = 1;
+  const limit = 8;
 
   const {
     data: products,
@@ -77,6 +82,13 @@ export default function Page() {
       ? sortedProducts
       : products;
 
+  const {
+    currentData: pageItems,
+    page,
+    setPage,
+    totalPages,
+  } = useClientPagination(displayProducts ?? [], initialPage, limit);
+
   if (isLoading) return <Spinner />;
   if (searchLoader) return <Spinner />;
   if (isError) return <div>Error: {error.message}</div>;
@@ -102,10 +114,11 @@ export default function Page() {
       <div
         className={`${mons.className} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
       >
-        {displayProducts?.map((product) => (
+        {pageItems?.map((product) => (
           <ProductListingItem key={product.id} {...product} />
         ))}
       </div>
+      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
   );
 }

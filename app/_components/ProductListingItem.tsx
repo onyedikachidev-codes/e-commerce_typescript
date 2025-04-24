@@ -1,8 +1,7 @@
 import React from "react";
 
 import { ProductListingProps } from "../_models/item";
-import Link from "next/link";
-import Button from "./Button";
+
 import { useDispatch } from "react-redux";
 import { addItems } from "../store/carts";
 import StarRating from "./StarRating";
@@ -23,10 +22,12 @@ export default function ProductListingItem({
     const newItem = {
       productId: id || 0,
       title,
+      image,
       quantity: 1,
       unitPrice: price,
       totalPrice: price * 1,
     };
+    console.log("🚀 Adding to cart:", newItem);
 
     dispatch(addItems(newItem));
   }

@@ -10,7 +10,7 @@ export default function HeaderSlider() {
   const sliderData = [
     {
       id: 1,
-      title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
+      title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
       offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
       buttonText2: "Find more",

@@ -8,6 +8,7 @@ interface CartItem {
   quantity: number;
   unitPrice: number;
   totalPrice: number;
+  image?: string;
 }
 
 interface InitialStateProps {

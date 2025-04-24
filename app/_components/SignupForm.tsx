@@ -8,6 +8,7 @@ import { FormData } from "../_models/item";
 import { useSignup } from "../_auth/useSignup";
 import Divider from "./Divider";
 import SocialSignup from "./SocialSignup";
+import SpinnerMini from "./SpinnerMini";
 
 function SignupForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -24,11 +25,7 @@ function SignupForm() {
       { email, fullName, password },
       {
         onSettled: () => {
-          reset({
-            fullName,
-            email,
-            password,
-          });
+          reset();
         },
       }
     );
@@ -161,9 +158,9 @@ function SignupForm() {
           <div className="mt-4 flex flex-col items-center justify-center gap-3">
             <button
               type="submit"
-              className="xl:ml-[13%] md:ml-[13%] mt-4 inline-block w-10/12 md:w-8/12 xl:w-8/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10"
+              className="xl:ml-[13%] cursor-pointer md:ml-[13%] mt-4 inline-block w-10/12 md:w-8/12 xl:w-8/12 rounded bg-blue-600 py-3 text-center text-sm font-semibold uppercase text-stone-300 hover:bg-blue-500 sm:mr-10"
             >
-              register
+              {!isPending ? "Register" : <SpinnerMini />}
             </button>
             <button className="text-blue-700">Already have an account?</button>
           </div>

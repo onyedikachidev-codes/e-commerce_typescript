@@ -1,6 +1,8 @@
 import { FormData, LoginProps } from "../_models/item";
 import supabase from "./supabase";
 
+//
+
 export async function signUp({ fullName, email, password }: FormData) {
   const { data, error } = await supabase.auth.signUp({
     email,

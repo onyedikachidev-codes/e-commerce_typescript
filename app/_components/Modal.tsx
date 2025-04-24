@@ -53,7 +53,7 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 function Overlay({ children }: OverlayProps) {
   return (
-    <div className="fixed top-0 left-0 w-full h-[100vh] z-[20000] transition-all duration-1000 backdrop-blur-sm bg-black/30">
+    <div className="fixed top-0 left-0 w-full h-[100vh] z-[1000] transition-all duration-1000 backdrop-blur-sm bg-black/30">
       {children}
     </div>
   );

@@ -74,7 +74,7 @@ export default function Navigation({ session }: Props) {
           </li>
 
           <li>
-            <Link href="#best" className="relative group">
+            <Link href="/#best" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
                 New Arrivals
               </span>
@@ -83,7 +83,7 @@ export default function Navigation({ session }: Props) {
           </li>
 
           <li>
-            <Link href="#about" className="relative group">
+            <Link href="/#about" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
                 About
               </span>

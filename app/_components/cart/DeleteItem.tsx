@@ -9,6 +9,11 @@ interface DeleteItemProps {
 export default function DeleteItem({ productId }: DeleteItemProps) {
   const dispatch = useDispatch();
   return (
-    <button onClick={() => dispatch(deleteItems(productId))}>Delete</button>
+    <button
+      onClick={() => dispatch(deleteItems(productId))}
+      className="text-red-500 hover:text-red-700"
+    >
+      Delete
+    </button>
   );
 }
