@@ -18,7 +18,7 @@ export default function About() {
           </h2>
           <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
         </div>
-        <p className="lg:max-w-[97%] md:max-w-[97%] max-w-full mt-2 text-xl font-medium ">
+        <p className="lg:max-w-[97%] md:max-w-[97%] md:mx-0 mx-[5%] max-w-full mt-2 text-xl font-medium">
           At Trivela, we&apos;re passionate about bringing you stylish and
           affordable fashion that fits your everyday lifestyle. Born from a love
           for clean designs and quality materials, we set out to create pieces

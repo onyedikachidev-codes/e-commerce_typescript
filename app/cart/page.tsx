@@ -55,7 +55,7 @@ export default function Page() {
             </table>
           </div>
 
-          <div className="mt-10 flex justify-between items-start mx-5">
+          <div className="mt-6 flex justify-between items-start mx-5">
             <button
               className="px-3 py-2 border border-blue-600 hover:bg-blue-200 cursor-pointer rounded-md"
               onClick={() => dispatch(clearCart())}
@@ -63,14 +63,11 @@ export default function Page() {
               Clear cart
             </button>
 
-            <div>
-              <div className="flex items-center gap-20 ">
-                <p className="text-lg">Subtotal</p>
-                <p className="font-semibold text-xl">
-                  ${Math.ceil(total).toFixed(2)}
-                </p>
-              </div>
-              <p className="text-sm text-gray-500 mt-1 font-normal">
+            <div className="">
+              <button className="py-2 px-3 w-full bg-blue-600 hover:bg-blue-400 cursor-pointer mt-2 rounded-md text-white">
+                Checkout(${Math.ceil(total).toFixed(2)})
+              </button>
+              <p className="text-sm text-gray-500 mt-1.5 font-normal">
                 Delivery fees not included yet.
               </p>
             </div>

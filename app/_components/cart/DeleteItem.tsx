@@ -11,7 +11,7 @@ export default function DeleteItem({ productId }: DeleteItemProps) {
   return (
     <button
       onClick={() => dispatch(deleteItems(productId))}
-      className="text-red-500 hover:text-red-700"
+      className="text-red-500 hover:text-red-700 cursor-pointer"
     >
       Delete
     </button>
