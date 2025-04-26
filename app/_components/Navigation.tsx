@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 import { FaShoppingCart } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
 import Logo from "./Logo";
 import Signup from "@/app/_components/Signup";
@@ -14,42 +14,19 @@ import Login from "@/app/_components/Login";
 import { useUser } from "../_auth/useUser";
 import Logout from "./Logout";
 import UserIcon from "./UserIcon";
-import { useSelector } from "react-redux";
+
 import { getTotalCartQuantity } from "../store/carts";
-import { Session } from "next-auth";
 import LogoutOAuth from "./LogoutOAuth";
-import { signOut } from "next-auth/react";
-import MobileNav from "./MobileNav";
 
 interface Props {
   session: Session | null;
 }
 
-const mons = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-mons",
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
 export default function Navigation({ session }: Props) {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+
   const { user: supabaseUser } = useUser();
   const totalQuantity = useSelector(getTotalCartQuantity);
-
-  useEffect(() => {
-    // Add or remove overflow: hidden on the body
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-  }, [isOpen]);
-
-  const toggleMenu = (): void => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleButtonClick = (): void => {
-    window.location.href = "mailto:nwangumabimma@gmail.com";
-  };
 
   const user = session?.user || supabaseUser;
 
@@ -62,9 +39,7 @@ export default function Navigation({ session }: Props) {
       </div>
 
       <div>
-        <ul
-          className={`${mons.className} lg:flex hidden items-center gap-8 text-xl text-black uppercase`}
-        >
+        <ul className="lg:flex hidden items-center gap-8 text-xl text-black uppercase">
           <li>
             <Link href="/products" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
@@ -105,7 +80,7 @@ export default function Navigation({ session }: Props) {
         </ul>
       </div>
 
-      <div className="flex justify-between items-center gap-12">
+      <div className="flex justify-between items-center md:gap-12">
         <div
           className="cursor-pointer relative"
           onClick={() => router.push("/cart")}
@@ -117,7 +92,7 @@ export default function Navigation({ session }: Props) {
             </span>
           )}
         </div>
-        <div className={`${mons.className} flex gap-4`}>
+        <div className={` flex gap-4`}>
           {user ? (
             <div className="flex items-center gap-2">
               {session?.user ? (
@@ -143,13 +118,6 @@ export default function Navigation({ session }: Props) {
           )}
         </div>
       </div>
-
-      <MobileNav
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-        setIsOpen={setIsOpen}
-        handleButtonClick={handleButtonClick}
-      />
     </nav>
   );
 }

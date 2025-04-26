@@ -11,8 +11,8 @@ export default function About() {
   const router = useRouter();
   return (
     <>
-      <div className="mx-20 text-gray-800">
-        <div className="my-8">
+      <div className="md:mx-20 mx-5 text-gray-800">
+        <div className="my-8 md:mx-0 mx-[5%]">
           <h2 className="text-2xl font-semibold text-[#2C3E50]">
             About Trivela
           </h2>
