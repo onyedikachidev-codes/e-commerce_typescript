@@ -8,7 +8,7 @@ export default function UserIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="size-8 lg:size-10 cursor-pointer"
+      className="size-7 xs:size-8 lg:size-10 cursor-pointer"
     >
       <path
         strokeLinecap="round"

@@ -120,13 +120,13 @@ export default function Page() {
             setErrorText={setErrorText}
           />
         </div>
-        <div className="mt-6 md:mt-0 max-w-[40%] md:max-w-full ml-[60%] md:ml-0">
+        <div className="mt-6 md:mt-0 flex flex-row-reverse">
           <Sort options={sortOptions} />
         </div>
       </div>
 
       <div
-        className={`${mons.className} grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
+        className={`${mons.className} grid grid-cols-1 xmd:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 sm:gap-6 py-6 mt-6 px-16 xmd:px-10 lg:px-20`}
       >
         {pageItems?.map((product) => (
           <ProductListingItem key={product.id} {...product} />

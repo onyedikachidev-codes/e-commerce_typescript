@@ -12,7 +12,7 @@ const dancing = Dancing_Script({
 export default function Logo() {
   return (
     <h1
-      className={`${dancing.className} font-bold text-4xl transform -rotate-[4deg] origin-left`}
+      className={`${dancing.className} font-bold text-3xl lg:text-4xl transform -rotate-[4deg] origin-left`}
     >
       Trivela
     </h1>

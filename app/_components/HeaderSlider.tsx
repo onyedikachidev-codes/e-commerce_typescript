@@ -20,8 +20,8 @@ export default function HeaderSlider() {
       id: 2,
       title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
       offer: "Hurry up only few lefts!",
-      buttonText1: "Shop Now",
-      buttonText2: "Explore Deals",
+      buttonText1: "Buy Now",
+      buttonText2: "Find more",
       imgSrc: header_playstation_image,
     },
   ];

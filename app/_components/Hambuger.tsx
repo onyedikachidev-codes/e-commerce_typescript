@@ -32,7 +32,7 @@ export default function Hambuger({
   return (
     <div>
       <div>
-        <button onClick={toggleMenu} className="relative h-8 w-8">
+        <button onClick={toggleMenu} className="relative h-7 w-7 xs:h-8 xs:w-8">
           <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ export default function Hambuger({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className={`size-8 text-gray-800 hover:text-gray-600 transform transition-all duration-300 ${
+              className={`size-7 xs:size-8 text-gray-800 hover:text-gray-600 transform transition-all duration-300 ${
                 isOpen
                   ? "scale-0 rotate-90 opacity-0"
                   : "scale-100 rotate-0 opacity-100"
@@ -58,7 +58,7 @@ export default function Hambuger({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className={`size-8 text-gray-800 hover:text-gray-600 absolute transform transition-all duration-300 ${
+              className={`size-7 xs:size-8 text-gray-800 hover:text-gray-600 absolute transform transition-all duration-300 ${
                 isOpen
                   ? "scale-100 rotate-0 opacity-100"
                   : "scale-0 -rotate-90 opacity-0"
@@ -75,7 +75,7 @@ export default function Hambuger({
       </div>
 
       <div
-        className={`absolute top-[9.5dvh] sm:top-[9.5dvh] lg:hidden w-full min-h-screen left-0 overflow-hidden p-4 transition-all duration-300 ease-in-out ${
+        className={`absolute top-[9dvh] sm:top-[9.2dvh] lg:hidden w-full min-h-screen left-0 overflow-hidden p-4 transition-all duration-300 ease-in-out ${
           isOpen
             ? "translate-y-0 opacity-100 fixed inset-0 z-[200000] bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]"
             : "-translate-y-full opacity-0 pointer-events-none"

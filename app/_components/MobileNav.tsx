@@ -75,7 +75,7 @@ export default function MobileNav({ session }: Props) {
                 <img
                   src={session?.user?.image ?? undefined}
                   alt="user_image"
-                  className="h-8 rounded-full"
+                  className="h-7 xs:h-8 rounded-full"
                 />
               ) : (
                 <UserIcon />
@@ -89,7 +89,7 @@ export default function MobileNav({ session }: Props) {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-8"
+                className="size-7 xs:size-8"
               >
                 <path
                   strokeLinecap="round"
@@ -104,7 +104,7 @@ export default function MobileNav({ session }: Props) {
           className="cursor-pointer relative"
           onClick={() => router.push("/cart")}
         >
-          <FaShoppingCart className="h-8 w-8" />
+          <FaShoppingCart className="h-7 w-7 xs:h-8 xs:w-8" />
           {totalQuantity > 0 && (
             <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
               {totalQuantity}

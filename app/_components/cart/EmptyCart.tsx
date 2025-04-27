@@ -18,7 +18,7 @@ export default function EmptyCart() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-28"
+            className="size-24 xs:size-28"
           >
             <path
               strokeLinecap="round"

@@ -80,7 +80,7 @@ export default function Page() {
             </button>
 
             <div className="">
-              <button className="py-2.5 px-9 w-full bg-blue-600 hover:bg-blue-400 cursor-pointer  rounded-md text-white">
+              <button className="py-2.5 px-6 xs:px-9 w-full bg-blue-600 hover:bg-blue-400 cursor-pointer  rounded-md text-white">
                 Checkout ($ {Math.ceil(total).toFixed(2)})
               </button>
             </div>

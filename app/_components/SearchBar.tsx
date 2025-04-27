@@ -14,7 +14,7 @@ export default function SearchBar() {
     useSearch();
   return (
     <div className="flex flex-col gap-2" ref={modalRef}>
-      <div className="relative w-56">
+      <div className="relative w-[12.5rem] md:w-56">
         <input
           type="text"
           placeholder={value}

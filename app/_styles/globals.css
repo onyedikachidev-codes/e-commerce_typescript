@@ -10,6 +10,9 @@
   --color-primary-100: #d4dee7;
   --color-primary-200: #b7c7d7;
   --color-primary-300: #5e82a6;
+
+  --breakpoint-xs: 25rem;
+  --breakpoint-xmd: 34rem;
 }
 
 @media (prefers-color-scheme: dark) {
