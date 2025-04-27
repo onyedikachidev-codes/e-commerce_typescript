@@ -71,7 +71,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="mt-6 pb-6 flex items-center justify-between mx-5">
+          <div className="mt-6 pb-6 flex items-center justify-between mx-3 xs:mx-5">
             <button
               className="px-3 py-2 border border-blue-600 hover:bg-blue-200 cursor-pointer rounded-md"
               onClick={() => dispatch(clearCart())}
