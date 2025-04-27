@@ -46,7 +46,7 @@ export default function Sort({ options }: SortProps) {
   return (
     <div className="relative" ref={sortRef}>
       <div
-        className="border px-2.5 py-3 rounded-lg font-normal text-sm flex gap-8 items-center cursor-pointer focus:border-blue-400"
+        className="border px-2.5 py-3 rounded-lg font-normal text-sm flex justify-between items-center cursor-pointer focus:border-blue-400"
         onClick={() => setIsOpen(true)}
       >
         <p>{selectedOption}</p>

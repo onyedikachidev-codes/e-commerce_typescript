@@ -40,7 +40,7 @@ export default function HeaderSlider() {
   };
 
   return (
-    <div className="overflow-hidden relative w-[90%] mx-16">
+    <div className="overflow-hidden relative w-full lg:w-[90%] mx-5 lg:mx-16">
       <div
         className="flex transition-transform duration-700 ease-in-out"
         style={{

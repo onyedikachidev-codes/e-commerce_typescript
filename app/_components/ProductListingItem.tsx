@@ -27,7 +27,6 @@ export default function ProductListingItem({
       unitPrice: price,
       totalPrice: price * 1,
     };
-    console.log("🚀 Adding to cart:", newItem);
 
     dispatch(addItems(newItem));
   }

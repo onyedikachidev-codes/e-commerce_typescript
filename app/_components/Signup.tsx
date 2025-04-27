@@ -2,8 +2,6 @@ import Button from "@/app/_components/Button";
 import SignupForm from "@/app/_components/SignupForm";
 import Modal from "@/app/_components/Modal";
 
-//
-
 function Signup() {
   return (
     <div>

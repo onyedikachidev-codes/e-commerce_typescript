@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header
-      className={`${mons.className} py-5 fixed left-0 top-0 w-full backdrop-blur-lg z-40 shadow-md`}
+      className={`${mons.className} py-5 fixed left-0 top-0 w-full  backdrop-blur-lg z-40 shadow-md`}
     >
       <div className="hidden lg:block">
         <Navigation session={session} />

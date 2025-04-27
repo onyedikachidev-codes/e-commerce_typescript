@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Socials() {
   return (
-    <div className="absolute bottom-14 flex gap-2 pl-7 lg:-translate-y-[40px] mt-3 md:mt-0">
+    <div className="absolute bottom-14 lg:bottom-10 flex gap-2 pl-5 lg:-translate-y-[40px] mt-3 md:mt-0">
       <Link
         href="https://github.com/onyedikachidev-codes"
         className="rounded-md cursor-pointer hover:bg-gray-300 h-10 w-10 border border-gray-500 flex items-center justify-center ml-2"

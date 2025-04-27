@@ -21,6 +21,7 @@ import { useSearchParams } from "next/navigation";
 import HeaderSlider from "../_components/HeaderSlider";
 import { useClientPagination } from "../_hooks/useClientPagination";
 import { Pagination } from "../_components/Pagination";
+import Footer from "../_components/Footer";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -96,29 +97,44 @@ export default function Page() {
   return (
     <div className="bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
       <Header />
+
       <div className="pt-24 flex justify-center items-center">
         <HeaderSlider />
       </div>
+
       <div
-        className={`${mons.className} flex justify-between items-center  py-4 mt-3 mx-7 text-xl `}
+        className={`${mons.className} md:flex justify-between items-center py-4 mt-3 mx-7 text-xl `}
       >
-        <h2 className="font-semibold font-xl">Popular Products</h2>
-        <SearchBig
-          value={value}
-          setValue={setValue}
-          errorText={errorText}
-          setErrorText={setErrorText}
-        />
-        <Sort options={sortOptions} />
+        <div>
+          <h2 className="text-2xl font-semibold text-[#2C3E50] mt-5 md:mt-0">
+            Popular Products
+          </h2>
+          <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
+        </div>
+
+        <div className="hidden lg:block">
+          <SearchBig
+            value={value}
+            setValue={setValue}
+            errorText={errorText}
+            setErrorText={setErrorText}
+          />
+        </div>
+        <div className="mt-6 md:mt-0 max-w-[40%] md:max-w-full ml-[60%] md:ml-0">
+          <Sort options={sortOptions} />
+        </div>
       </div>
+
       <div
-        className={`${mons.className} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
+        className={`${mons.className} grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-6 mt-6 px-20`}
       >
         {pageItems?.map((product) => (
           <ProductListingItem key={product.id} {...product} />
         ))}
       </div>
       <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+
+      <Footer />
     </div>
   );
 }
