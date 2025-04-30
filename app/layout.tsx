@@ -1,6 +1,5 @@
 "use client";
 
-// import type { Metadata } from "next";
 import {
   Poppins,
   Cedarville_Cursive,
@@ -44,15 +43,6 @@ const dancing = Dancing_Script({
   weight: ["400", "500", "600", "700"],
 });
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: "Trivela",
-//     template: "Trivela | %s",
-//   },
-//   description:
-//     "Trivela is your one-stop online store for stylish, affordable, and high-quality products. Discover deals, shop smart, and enjoy seamless delivery — wherever you are.",
-// };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,7 +54,10 @@ export default function RootLayout({
     document.title = "Trivela";
     const metaDescription = document.querySelector("meta[name='description']");
     if (metaDescription) {
-      metaDescription.setAttribute("content", "New dynamic description");
+      metaDescription.setAttribute(
+        "content",
+        "Trivela is your one-stop online store for stylish, affordable, and high-quality products. Discover deals, shop smart, and enjoy seamless delivery — wherever you are."
+      );
     }
   }, []);
   return (
