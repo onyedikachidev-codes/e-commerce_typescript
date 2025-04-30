@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 
 export default function SocialSignup() {
@@ -18,7 +18,11 @@ export default function SocialSignup() {
         className="p-2.5 flex items-center justify-center border rounded-full bg-amber-50 cursor-pointer"
         onClick={() => signIn("google")}
       >
-        <FaGoogle className=" flex h-7 w-7 items-center text-green-500" />
+        <img
+          src="https://authjs.dev/img/providers/google.svg"
+          alt="Google logo"
+          className="w-7 h-7"
+        />
       </div>
     </div>
   );

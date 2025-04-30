@@ -40,7 +40,7 @@
   }
 
   .spinner-mini {
-    margin-: 0;
+    margin: 0;
     width: 20px;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -53,15 +53,5 @@
     to {
       transform: rotate(1turn);
     }
-  }
-}
-
-@layer components {
-  .progress-bar::-webkit-progress-bar {
-    @apply rounded-full bg-gray-200;
-  }
-
-  .progress-bar::-webkit-progress-value {
-    @apply rounded-full bg-blue-600;
   }
 }

@@ -1,15 +1,10 @@
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { FaChevronRight } from "react-icons/fa";
-import Signup from "@/app/_components/Signup";
-import Login from "@/app/_components/Login";
-import LogoutOAuth from "./LogoutOAuth";
-import { signOut } from "next-auth/react";
-import Logout from "./Logout";
+import { Session } from "next-auth";
 
 import { useUser } from "../_auth/useUser";
-import { Session } from "next-auth";
 
 interface HambugerProps {
   toggleMenu: () => void;
@@ -136,35 +131,6 @@ export default function Hambuger({
             </Link>
             <FaChevronRight className="text-lg text-[#06080B] lg:hidden" />
           </div>
-        </div>
-
-        <div className="flex items-center justify-center md:max-w-[40%] mx-auto mt-10 md:mt-20 gap-3 md:gap-5">
-          {user ? (
-            <div className="flex items-center gap-2">
-              {session?.user ? (
-                <LogoutOAuth onClick={() => signOut()} />
-              ) : (
-                <Logout />
-              )}
-            </div>
-          ) : (
-            <div className="flex item-center gap-2.5">
-              <div
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
-                <Signup />
-              </div>
-              <div
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
-                <Login />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

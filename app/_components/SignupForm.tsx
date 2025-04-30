@@ -9,6 +9,8 @@ import { useSignup } from "../_auth/useSignup";
 import Divider from "./Divider";
 import SocialSignup from "./SocialSignup";
 import SpinnerMini from "./SpinnerMini";
+import Modal from "./Modal";
+import LoginForm from "./LoginForm";
 
 function SignupForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -162,7 +164,16 @@ function SignupForm() {
             >
               {!isPending ? "Register" : <SpinnerMini />}
             </button>
-            <button className="text-blue-700">Already have an account?</button>
+            <Modal>
+              <Modal.Open opens="signup-form">
+                <button className="text-blue-700">
+                  Already have an account?
+                </button>
+              </Modal.Open>
+              <Modal.Window name="signup-form">
+                <LoginForm />
+              </Modal.Window>
+            </Modal>
           </div>
         </form>
 

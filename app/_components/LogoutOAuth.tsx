@@ -7,14 +7,13 @@ interface OnClickProps {
 export default function LogoutOAuth({ onClick }: OnClickProps) {
   return (
     <div className="flex items-center gap-2 md:block" onClick={onClick}>
-      <p className="block md:hidden text-2xl font-semibold">Logout</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-10 cursor-pointer"
+        className="xs:size-8 md:size-9 lg:size-10 cursor-pointer"
         onClick={onClick}
       >
         <path
