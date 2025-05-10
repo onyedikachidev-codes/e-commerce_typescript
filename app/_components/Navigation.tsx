@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Session } from "next-auth";
-import { signOut } from "next-auth/react";
 
 import Logo from "./Logo";
 import Signup from "@/app/_components/Signup";
@@ -16,19 +15,37 @@ import Logout from "./Logout";
 import UserIcon from "./UserIcon";
 
 import { getTotalCartQuantity } from "../store/carts";
-import LogoutOAuth from "./LogoutOAuth";
+import UserDropdown from "./UserDropdown";
 
 interface Props {
   session: Session | null;
 }
 
 export default function Navigation({ session }: Props) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
+
+  const ref = useRef<HTMLDivElement>(null);
 
   const { user: supabaseUser } = useUser();
   const totalQuantity = useSelector(getTotalCartQuantity);
 
   const user = session?.user || supabaseUser;
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <nav className="relative flex justify-between items-center md:px-10 px-5 max-w-full">
@@ -92,29 +109,38 @@ export default function Navigation({ session }: Props) {
             </span>
           )}
         </div>
-        <div className={` flex gap-4`}>
+
+        <div className={` flex items-center gap-2.5`}>
           {user ? (
             <div className="flex items-center gap-2">
               {session?.user ? (
-                <img
-                  src={session?.user?.image ?? undefined}
-                  alt="user_image"
-                  className="h-10 rounded-full"
-                />
+                <div className="relative cursor-pointer" ref={ref}>
+                  <img
+                    src={session?.user?.image ?? undefined}
+                    alt="user_image"
+                    className="h-10 rounded-full"
+                    onClick={() => setIsOpen((open) => !open)}
+                  />
+                  {isOpen && (
+                    <div className="absolute top-10 -left-[9rem] mt-2 w-[14rem] bg-white shadow-md rounded z-50 overflow-hidden text-ellipsis">
+                      <UserDropdown
+                        session={session}
+                        setIsOpen={setIsOpen}
+                        isOpen={isOpen}
+                      />
+                    </div>
+                  )}
+                </div>
               ) : (
                 <UserIcon />
               )}
-              {session?.user ? (
-                <LogoutOAuth onClick={() => signOut()} />
-              ) : (
-                <Logout />
-              )}
+              {session?.user ? <div></div> : <Logout />}
             </div>
           ) : (
-            <>
+            <div className="flex gap-2">
               <Signup />
               <Login />
-            </>
+            </div>
           )}
         </div>
       </div>

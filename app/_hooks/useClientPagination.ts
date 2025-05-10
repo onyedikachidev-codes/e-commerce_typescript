@@ -14,7 +14,6 @@ export function useClientPagination<T>(items: T[], initialPage = 1, limit = 8) {
     [items.length, limit]
   );
 
-  // clamp in case items got shorter
   useEffect(() => {
     if (page > totalPages) {
       setPage(totalPages);

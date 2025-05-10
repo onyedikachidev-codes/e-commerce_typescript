@@ -3,21 +3,14 @@ import React, { ReactNode } from "react";
 interface ModalProps {
   isOpen: boolean;
   children: ReactNode;
-  uniqueStyles: string;
 }
 
-export default function NavModal({
-  isOpen,
-  children,
-  uniqueStyles,
-}: ModalProps) {
+export default function NavModal({ isOpen, children }: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className={`flex items-center justify-center z-30 ${uniqueStyles}`}>
-      <div className="text-gray-700 bg-white backdrop-blur-lg p-6 shadow-xl min-w-[300px]">
-        {children}
-      </div>
-    </div>
+    <ul className="text-gray-700 bg-white z-30 backdrop-blur-lg p-6 shadow-xl rounded absolute -left-[3.3rem] sm:-left-5 lg:-left-16 top-12 w-[260px] lg:w-[302px] overflow-y-auto">
+      {children}
+    </ul>
   );
 }

@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
+import { ThemeProvider } from "./_components/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -69,7 +70,13 @@ export default function RootLayout({
           <PersistGate loading={null} persistor={persistor}>
             <SessionProvider>
               <QueryClientProvider client={queryClient}>
-                {children}
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                >
+                  {children}
+                </ThemeProvider>
                 <Toaster
                   position="top-center"
                   gutter={12}

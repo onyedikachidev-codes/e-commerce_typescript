@@ -45,7 +45,6 @@ export default function SearchBig({
         </button>
       </div>
 
-      {/* {error && <p className="mt-2 text-red-500">Something went wrong</p>} */}
       {errorText && (
         <p className="mt-2 absolute  translate-y-10 text-red-500">
           {errorText}
