@@ -12,13 +12,13 @@ export function ThemeToggle() {
 
   return (
     <button
-      className="cursor-pointer rounded-2xl p-2 flex items-center justify-center bg-gray-100 dark:bg-gray-800"
+      className="cursor-pointer rounded-2xl p-1 xs:p-1.5 lg:p-2 flex items-center justify-center bg-gray-100 dark:bg-gray-800"
       onClick={toggleTheme}
     >
       {theme === "dark" ? (
-        <Sun className="h-6 w-6 text-yellow-400" />
+        <Sun className="h-5 w-5 xs:h-6 xs:w-6 text-yellow-400" />
       ) : (
-        <Moon className="h-6 w-6 text-blue-500" />
+        <Moon className="h-5 w-5 xs:h-6 xs:w-6 text-blue-500" />
       )}
       <span className="sr-only">Toggle theme</span>
     </button>

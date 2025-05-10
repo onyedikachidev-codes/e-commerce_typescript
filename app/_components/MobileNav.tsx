@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
@@ -17,9 +17,8 @@ import Hambuger from "./Hambuger";
 import Logo from "./Logo";
 import Modal from "./Modal";
 import SignupForm from "./SignupForm";
-import LogoutOAuth from "./LogoutOAuth";
 import Logout from "./Logout";
-import { signOut } from "next-auth/react";
+import UserDropdown from "./UserDropdown";
 
 interface Props {
   session: Session | null;
@@ -35,6 +34,9 @@ const mons = Montserrat({
 export default function MobileNav({ session }: Props) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
 
   const { user: supabaseUser } = useUser();
   const totalQuantity = useSelector(getTotalCartQuantity);
@@ -75,11 +77,26 @@ export default function MobileNav({ session }: Props) {
           {user ? (
             <div className="flex items-center gap-2">
               {session?.user ? (
-                <img
-                  src={session?.user?.image ?? undefined}
-                  alt="user_image"
-                  className="h-7 xs:h-8 rounded-full"
-                />
+                <div className="relative cursor-pointer">
+                  <img
+                    src={session?.user?.image ?? undefined}
+                    alt="user_image"
+                    className="h-10 rounded-full"
+                    onClick={() => setIsDropdownOpen((open) => !open)}
+                  />
+                  {isDropdownOpen && (
+                    <div
+                      ref={ref}
+                      className="absolute top-10 -left-[7.7rem] sm:-left-[5.6rem] mt-2 w-[14rem] bg-white shadow-md rounded z-50 overflow-hidden text-ellipsis"
+                    >
+                      <UserDropdown
+                        session={session}
+                        setIsOpen={setIsDropdownOpen}
+                        isOpen={isDropdownOpen}
+                      />
+                    </div>
+                  )}
+                </div>
               ) : (
                 <UserIcon />
               )}
@@ -94,7 +111,7 @@ export default function MobileNav({ session }: Props) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-7 xs:size-8"
+                    className="size-7 xs:size-8 cursor-pointer"
                   >
                     <path
                       strokeLinecap="round"
@@ -121,13 +138,10 @@ export default function MobileNav({ session }: Props) {
             </span>
           )}
         </div>
+
         {user ? (
           <div className="flex items-center gap-2">
-            {session?.user ? (
-              <LogoutOAuth onClick={() => signOut()} />
-            ) : (
-              <Logout />
-            )}
+            {session?.user ? <div></div> : <Logout />}
           </div>
         ) : (
           <></>
