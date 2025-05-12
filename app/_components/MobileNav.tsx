@@ -81,7 +81,7 @@ export default function MobileNav({ session }: Props) {
                   <img
                     src={session?.user?.image ?? undefined}
                     alt="user_image"
-                    className="h-10 rounded-full"
+                    className="h-8 rounded-full"
                     onClick={() => setIsDropdownOpen((open) => !open)}
                   />
                   {isDropdownOpen && (
