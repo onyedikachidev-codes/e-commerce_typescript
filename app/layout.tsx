@@ -70,13 +70,13 @@ export default function RootLayout({
           <PersistGate loading={null} persistor={persistor}>
             <SessionProvider>
               <QueryClientProvider client={queryClient}>
-                {/* <ThemeProvider
+                <ThemeProvider
                   attribute="class"
-                  defaultTheme="system"
+                  defaultTheme="light"
                   enableSystem
-                > */}
-                {children}
-                {/* </ThemeProvider> */}
+                >
+                  {children}
+                </ThemeProvider>
                 <Toaster
                   position="top-center"
                   gutter={12}
