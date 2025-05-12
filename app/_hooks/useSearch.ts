@@ -72,7 +72,6 @@ export function useSearch() {
   );
 
   const ghostText = matchedSuggestion?.slice(value.length) || "";
-
   const maxLength = 15;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -88,13 +87,13 @@ export function useSearch() {
         const remainingLength = maxLength - value.length;
         const truncatedGhostText = ghostText.slice(0, remainingLength);
 
-        const ghostWithEllipsis =
-          truncatedGhostText +
-          (remainingLength < ghostText.length ? "..." : "");
-
         e.preventDefault();
-        setValue(value + ghostWithEllipsis);
+        setValue(value + truncatedGhostText);
         setHideGhost(true);
+
+        if (value.length + truncatedGhostText.length >= 4) {
+          setErrorText("");
+        }
       }
     }
 
@@ -113,10 +112,11 @@ export function useSearch() {
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     const { target } = e;
-    setValue(target.value);
+    const newValue = target.value;
+    setValue(newValue);
     setHideGhost(false);
 
-    if (value.length < 3 || target.value.length < 4) {
+    if (newValue.length < 4) {
       setErrorText("Please enter at least 4 characters.");
       setShowModal(false);
       setIsOpen(false);
@@ -126,7 +126,7 @@ export function useSearch() {
       setIsOpen(true);
     }
 
-    if (value.length < 0 || target.value.length < 1) {
+    if (newValue.length < 1) {
       setErrorText("");
     }
   }
