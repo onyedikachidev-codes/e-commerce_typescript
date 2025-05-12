@@ -19,28 +19,31 @@ export default function SearchBar() {
     ghostText,
     handleKeyDown,
     activeIndex,
+    hideGhost,
   } = useSearch();
 
   const autoCompleteText = ghostText.slice(0, 10).toLowerCase();
   return (
     <div className="flex flex-col gap-2 relative" ref={modalRef}>
       <div className="relative w-[12.5rem] md:w-56">
-        <div
-          className="absolute top-0 left-0 text-blue-300 pointer-events-none py-2 px-3 duration-200 transition-all"
-          style={{
-            fontSize: "1rem",
-            fontFamily: "inherit",
-            whiteSpace: "pre",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            maxWidth: "82%",
-          }}
-        >
-          {value.length > 0 ? value + autoCompleteText : value}
-        </div>
+        {!hideGhost && (
+          <div
+            className="absolute top-0 left-0 text-blue-300 pointer-events-none py-2 px-3 duration-200 transition-all whitespace-pre overflow-hidden text-ellipsis max-w-[82%]"
+            style={{
+              fontSize: "1rem",
+              fontFamily: "inherit",
+            }}
+          >
+            <span className="text-black">{value}</span>
+            <span className="text-blue-300">
+              {value.length > 0 ? autoCompleteText : ""}
+            </span>
+          </div>
+        )}
         <input
           type="text"
-          placeholder={value}
+          placeholder="Search products..."
+          value={value}
           className="w-full placeholder-blue-400 border-b relative z-10 border-gray-500 focus:outline-none focus:border-gray-600 px-3 py-2 transition-transform duration-200 ease-in-out bg-transparent"
           onChange={handleSearch}
           onKeyDown={handleKeyDown}

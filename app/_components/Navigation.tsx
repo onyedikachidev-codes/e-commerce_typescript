@@ -16,6 +16,7 @@ import UserIcon from "./UserIcon";
 
 import { getTotalCartQuantity } from "../store/carts";
 import UserDropdown from "./UserDropdown";
+// import { ThemeToggle } from "./Theme-toggle";
 
 interface Props {
   session: Session | null;
@@ -97,18 +98,19 @@ export default function Navigation({ session }: Props) {
         </ul>
       </div>
 
-      <div className="flex justify-between items-center md:gap-12">
+      <div className="flex justify-between items-center md:gap-2.5">
         <div
           className="cursor-pointer relative"
           onClick={() => router.push("/cart")}
         >
-          <FaShoppingCart className="h-8 w-8" />
+          <FaShoppingCart className="h-9 w-9" />
           {totalQuantity > 0 && (
             <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
               {totalQuantity}
             </span>
           )}
         </div>
+        {/* <ThemeToggle /> */}
 
         <div className={` flex items-center gap-2.5`}>
           {user ? (
@@ -118,7 +120,7 @@ export default function Navigation({ session }: Props) {
                   <img
                     src={session?.user?.image ?? undefined}
                     alt="user_image"
-                    className="h-10 rounded-full"
+                    className="h-9 rounded-full"
                     onClick={() => setIsOpen((open) => !open)}
                   />
                   {isOpen && (

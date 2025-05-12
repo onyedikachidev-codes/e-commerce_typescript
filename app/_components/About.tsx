@@ -53,7 +53,7 @@ export default function About() {
       </div>
 
       <div className="flex items-center justify-center">
-        <div className="relative inline-block mt-4 mb-8 md:mb-2">
+        <div className="relative inline-block mt-4 mb-8 md:mb-10">
           <Button onClick={() => router.push("/products")} type="cta">
             Shop Now
           </Button>

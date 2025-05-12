@@ -7,12 +7,13 @@ import { fetchSearchedProducts } from "../_lib/actions";
 import axios from "axios";
 
 export function useSearch() {
-  const [value, setValue] = useState("Search products...");
+  const [value, setValue] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hideGhost, setHideGhost] = useState(false);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -72,10 +73,29 @@ export function useSearch() {
 
   const ghostText = matchedSuggestion?.slice(value.length) || "";
 
+  const maxLength = 18;
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if ((e.key === "Tab" || e.key === "ArrowRight") && ghostText) {
-      e.preventDefault();
-      setValue(value + ghostText);
+      const newValue = value + ghostText;
+
+      // Ensure the total length does not exceed maxLength
+      if (newValue.length <= maxLength) {
+        e.preventDefault();
+        setValue(newValue);
+        setHideGhost(true);
+      } else {
+        const remainingLength = maxLength - value.length;
+        const truncatedGhostText = ghostText.slice(0, remainingLength);
+
+        const ghostWithEllipsis =
+          truncatedGhostText +
+          (remainingLength < ghostText.length ? "..." : "");
+
+        e.preventDefault();
+        setValue(value + ghostWithEllipsis);
+        setHideGhost(true);
+      }
     }
 
     if (!data || data.length === 0) return;
@@ -94,8 +114,9 @@ export function useSearch() {
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     const { target } = e;
     setValue(target.value);
+    setHideGhost(false);
 
-    if (target.value.length < 4) {
+    if (value.length < 3 || target.value.length < 4) {
       setErrorText("Please enter at least 4 characters.");
       setShowModal(false);
       setIsOpen(false);
@@ -105,9 +126,8 @@ export function useSearch() {
       setIsOpen(true);
     }
 
-    if (target.value.length < 1) {
+    if (value.length < 0 || target.value.length < 1) {
       setErrorText("");
-      console.log(ghostText);
     }
   }
 
@@ -121,5 +141,6 @@ export function useSearch() {
     ghostText,
     handleKeyDown,
     activeIndex,
+    hideGhost,
   };
 }
