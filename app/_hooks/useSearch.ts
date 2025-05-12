@@ -73,7 +73,7 @@ export function useSearch() {
 
   const ghostText = matchedSuggestion?.slice(value.length) || "";
 
-  const maxLength = 18;
+  const maxLength = 15;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if ((e.key === "Tab" || e.key === "ArrowRight") && ghostText) {
