@@ -17,7 +17,6 @@ import Hambuger from "./Hambuger";
 import Logo from "./Logo";
 import Modal from "./Modal";
 import SignupForm from "./SignupForm";
-import Logout from "./Logout";
 import UserDropdown from "./UserDropdown";
 
 interface Props {
@@ -57,16 +56,8 @@ export default function MobileNav({ session }: Props) {
   const user = session?.user || supabaseUser;
 
   return (
-    <nav className="relative flex justify-between items-center md:px-10 px-5 max-w-full">
+    <nav className="relative flex justify-between items-center md:px-10 xmd:px-7 xs:px-6 px-5 max-w-full">
       <div className="flex gap-2.5 sm:gap-3.5 items-center">
-        <Hambuger
-          toggleMenu={toggleMenu}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          handleButtonClick={handleButtonClick}
-          session={session}
-        />
-
         <Link href="/">
           <Logo />
         </Link>
@@ -139,13 +130,13 @@ export default function MobileNav({ session }: Props) {
           )}
         </div>
 
-        {user ? (
-          <div className="flex items-center gap-2">
-            {session?.user ? <div></div> : <Logout />}
-          </div>
-        ) : (
-          <></>
-        )}
+        <Hambuger
+          toggleMenu={toggleMenu}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleButtonClick={handleButtonClick}
+          session={session}
+        />
       </div>
     </nav>
   );

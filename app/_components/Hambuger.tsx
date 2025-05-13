@@ -13,6 +13,7 @@ import { CiShop } from "react-icons/ci";
 import { LiaPlaneArrivalSolid } from "react-icons/lia";
 import { FcAbout } from "react-icons/fc";
 import { LuContact } from "react-icons/lu";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 interface HambugerProps {
   toggleMenu: () => void;
@@ -31,7 +32,6 @@ export default function Hambuger({
 }: HambugerProps) {
   const router = useRouter();
   const { user: supabaseUser } = useUser();
-  const user = session?.user || supabaseUser;
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,25 +52,8 @@ export default function Hambuger({
   return (
     <div>
       <div>
-        <button onClick={toggleMenu} className="relative h-7 w-7 xs:h-8 xs:w-8">
-          <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className={`size-7 xs:size-8 text-gray-800 hover:text-gray-600 transform transition-all duration-300 ${
-                isOpen ? "scale-0 rotate-90 opacity-0" : ""
-              }`}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </div>
+        <button onClick={toggleMenu} className="cursor-pointer">
+          <GiHamburgerMenu className="h-7 w-7 text-gray-700" />
         </button>
       </div>
 
