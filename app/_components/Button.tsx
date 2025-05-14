@@ -6,10 +6,10 @@ const base =
 const styles = {
   signup:
     base +
-    " block py-[0.7rem] lg:py-[0.4rem] px-10 lg:px-7 border border-blue-500 text-blue-600 bg-white hover:bg-gray-50 transition-transform hover:scale-105 duration-200 ease-in-out",
+    " block py-[0.7rem] lg:py-[0.4rem] px-8 lg:px-6 border border-blue-600 text-blue-600 bg-white hover:bg-gray-50 transition-transform hover:scale-105 duration-200 ease-in-out",
   login:
     base +
-    " block py-[0.7rem] lg:py-[0.4rem] px-12 lg:px-7 border bg-gray-600 hover:bg-gray-700 border-gray-300 text-gray-100 transition-transform hover:scale-105 duration-200 ease-in-out",
+    " block py-[0.8rem] lg:py-[0.5rem] px-12 lg:px-7 bg-blue-600 hover:bg-blue-500 text-gray-50 transition-transform hover:scale-105 duration-200 ease-in-out",
   cta:
     base +
     "  relative py-[0.7rem] border border-gray-200 text-gray-200 bg-blue-600 transition-transform hover:scale-105 duration-200 ease-in-out mt-3 z-10",

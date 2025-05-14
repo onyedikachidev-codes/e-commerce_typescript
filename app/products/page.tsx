@@ -7,7 +7,6 @@ import Header from "../_components/Header";
 
 import { Montserrat } from "next/font/google";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../_components/Spinner";
 import SearchBig from "../_components/SearchBig";
 import { useDebounce } from "../_hooks/useDebounce";
 import {
@@ -22,6 +21,7 @@ import HeaderSlider from "../_components/HeaderSlider";
 import { useClientPagination } from "../_hooks/useClientPagination";
 import { Pagination } from "../_components/Pagination";
 import Footer from "../_components/Footer";
+import ProductSkeleton from "../_components/ProductSkeleton";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -90,8 +90,6 @@ export default function Page() {
     totalPages,
   } = useClientPagination(displayProducts ?? [], initialPage, limit);
 
-  if (isLoading) return <Spinner />;
-  if (searchLoader) return <Spinner />;
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
@@ -112,7 +110,7 @@ export default function Page() {
           <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <SearchBig
             value={value}
             setValue={setValue}
@@ -128,10 +126,15 @@ export default function Page() {
       <div
         className={`${mons.className} grid grid-cols-1 xmd:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 sm:gap-6 py-6 mt-6 px-16 xmd:px-10 lg:px-20`}
       >
-        {pageItems?.map((product) => (
-          <ProductListingItem key={product.id} {...product} />
-        ))}
+        {isLoading || searchLoader
+          ? Array.from({ length: limit }).map((_, index) => (
+              <ProductSkeleton key={index} />
+            ))
+          : pageItems?.map((product) => (
+              <ProductListingItem key={product.id} {...product} />
+            ))}
       </div>
+
       <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
 
       <Footer />

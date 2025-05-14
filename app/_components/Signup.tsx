@@ -8,7 +8,7 @@ function Signup() {
       <Modal>
         <Modal.Open opens="signup-form">
           <Button onClick={() => console.log("")} type="signup">
-            Register
+            Sign Up
           </Button>
         </Modal.Open>
         <Modal.Window name="signup-form">

@@ -11,12 +11,10 @@ import Logo from "./Logo";
 import Signup from "@/app/_components/Signup";
 import Login from "@/app/_components/Login";
 import { useUser } from "../_auth/useUser";
-import Logout from "./Logout";
 import UserIcon from "./UserIcon";
 
 import { getTotalCartQuantity } from "../store/carts";
 import UserDropdown from "./UserDropdown";
-// import { ThemeToggle } from "./Theme-toggle";
 
 interface Props {
   session: Session | null;
@@ -49,7 +47,7 @@ export default function Navigation({ session }: Props) {
   }, [isOpen]);
 
   return (
-    <nav className="relative flex justify-between items-center md:px-10 px-5 max-w-full">
+    <nav className="relative flex justify-between items-center px-8 xl:px-16 max-w-full">
       <div>
         <Link href="/">
           <Logo />
@@ -57,7 +55,7 @@ export default function Navigation({ session }: Props) {
       </div>
 
       <div>
-        <ul className="lg:flex hidden items-center gap-8 text-xl text-black uppercase">
+        <ul className="lg:flex hidden items-cente gap-5 xl:gap-8 text-xl text-black uppercase">
           <li>
             <Link href="/products" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
@@ -98,7 +96,7 @@ export default function Navigation({ session }: Props) {
         </ul>
       </div>
 
-      <div className="flex justify-between items-center md:gap-2.5">
+      <div className="flex justify-between items-center gap-4">
         <div
           className="cursor-pointer relative"
           onClick={() => router.push("/cart")}
@@ -110,9 +108,8 @@ export default function Navigation({ session }: Props) {
             </span>
           )}
         </div>
-        {/* <ThemeToggle /> */}
 
-        <div className={` flex items-center gap-2.5`}>
+        <div className={`flex items-center gap-2.5`}>
           {user ? (
             <div className="flex items-center gap-2">
               {session?.user ? (
@@ -136,12 +133,11 @@ export default function Navigation({ session }: Props) {
               ) : (
                 <UserIcon />
               )}
-              {session?.user ? <div></div> : <Logout />}
             </div>
           ) : (
             <div className="flex gap-2">
-              <Signup />
               <Login />
+              <Signup />
             </div>
           )}
         </div>
