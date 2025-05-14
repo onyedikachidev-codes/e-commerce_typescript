@@ -110,7 +110,7 @@ export default function Page() {
           <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <SearchBig
             value={value}
             setValue={setValue}

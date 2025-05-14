@@ -67,9 +67,8 @@ export default function Home() {
         className={`${mons.className} min-h-[100dvh] md:min-h-[90dvh] relative`}
       >
         <About />
-        <div className="absolute bottom-0 w-full">
-          <Footer />
-        </div>
+
+        <Footer />
       </section>
     </main>
   );

@@ -45,10 +45,6 @@ export default function MobileNav({ session }: Props) {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
-  const toggleMenu = (): void => {
-    setIsOpen(!isOpen);
-  };
-
   const handleButtonClick = (): void => {
     window.location.href = "mailto:nwangumabimma@gmail.com";
   };
@@ -56,7 +52,7 @@ export default function MobileNav({ session }: Props) {
   const user = session?.user || supabaseUser;
 
   return (
-    <nav className="relative flex justify-between items-center md:px-10 xmd:px-7 xs:px-6 px-5 max-w-full">
+    <nav className="relative flex justify-between items-center sm:px-16 xmd:px-8 xs:px-6 px-5 max-w-full">
       <div className="flex gap-2.5 sm:gap-3.5 items-center">
         <Link href="/">
           <Logo />
@@ -118,6 +114,7 @@ export default function MobileNav({ session }: Props) {
             </>
           )}
         </div>
+
         <div
           className="cursor-pointer relative"
           onClick={() => router.push("/cart")}
@@ -131,11 +128,9 @@ export default function MobileNav({ session }: Props) {
         </div>
 
         <Hambuger
-          toggleMenu={toggleMenu}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           handleButtonClick={handleButtonClick}
-          session={session}
         />
       </div>
     </nav>

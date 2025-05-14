@@ -47,7 +47,7 @@ export default function Navigation({ session }: Props) {
   }, [isOpen]);
 
   return (
-    <nav className="relative flex justify-between items-center px-16 max-w-full">
+    <nav className="relative flex justify-between items-center px-8 xl:px-16 max-w-full">
       <div>
         <Link href="/">
           <Logo />
@@ -55,7 +55,7 @@ export default function Navigation({ session }: Props) {
       </div>
 
       <div>
-        <ul className="lg:flex hidden items-center gap-8 text-xl text-black uppercase">
+        <ul className="lg:flex hidden items-cente gap-5 xl:gap-8 text-xl text-black uppercase">
           <li>
             <Link href="/products" className="relative group">
               <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">

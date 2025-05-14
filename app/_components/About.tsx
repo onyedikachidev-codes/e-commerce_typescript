@@ -3,57 +3,29 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 import RatingCard from "./RatingCard";
 
-import face from "@/public/face.jpg";
-import reva from "@/public/reva.jpg";
-import finest from "@/public/finest.jpg";
-
 export default function About() {
   const router = useRouter();
   return (
-    <>
+    <div className="bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4] pt-6">
       <div className="md:mx-20 mx-5 text-gray-800">
-        <div className="my-8 md:mx-0 mx-[5%]">
+        <div className="my-8 text-center">
           <h2 className="text-2xl font-semibold text-[#2C3E50]">
             About Trivela
           </h2>
-          <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
+          <div className="w-20 md:h-1 h-0.5 bg-blue-500 mt-1 rounded mx-auto" />
         </div>
-        <p className="lg:max-w-[97%] md:max-w-[97%] md:mx-0 mx-[5%] max-w-full mt-2 text-xl font-medium">
+        <p className="lg:max-w-[97%] md:max-w-[97%] md:mx-0 mx-[5%] max-w-full mt-2 text-base md:text-xl font-medium">
           At Trivela, we&apos;re passionate about bringing you stylish and
           affordable fashion that fits your everyday lifestyle. Born from a love
           for clean designs and quality materials, we set out to create pieces
-          that you&apos;ll reach for over and over again. Whether you&apos;re
-          chasing your dreams or just kicking back, Trivela has your look
-          covered.
+          that you&apos;ll reach for over and over again.
         </p>
       </div>
 
-      <div className="flex gap-8 mx-[5%] mt-16 lg:flex-row flex-col justify-center items-center">
-        <RatingCard
-          avatar={face.src}
-          name="Emma Parker"
-          commentTitle="Reliable"
-          comment="Delivery was on point—exactly when I expected it, packaged securely, and in perfect condition, making the whole process dependable."
-          title="Sales Rep."
-        />
-        <RatingCard
-          avatar={reva.src}
-          name="James Ravesh"
-          commentTitle="Simple"
-          comment="From discovering products to completing my purchase, the entire shopping process felt effortless, with clear steps and no distractions."
-          title="CEO Sally"
-        />
-        <RatingCard
-          avatar={finest.src}
-          name="Catherine Low"
-          commentTitle="Seamless"
-          comment="From browsing to checkout, the whole process felt incredibly smooth. It’s like the app knew exactly what I needed next."
-          title="Co-lead Leadr"
-        />
-      </div>
+      <RatingCard />
 
       <div className="flex items-center justify-center">
-        <div className="relative inline-block mt-4 mb-8 md:mb-10">
+        <div className="relative inline-block mt-8 mb-8 ">
           <Button onClick={() => router.push("/products")} type="cta">
             Shop Now
           </Button>
@@ -62,6 +34,7 @@ export default function About() {
           </Button>
         </div>
       </div>
-    </>
+      <div />
+    </div>
   );
 }
