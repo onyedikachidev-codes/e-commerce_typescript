@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import { PersistGate } from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,6 +63,13 @@ export default function RootLayout({
   }, []);
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="17bf0945-d1b1-464b-919b-ddc54ca11aa1"
+          strategy="lazyOnload"
+        />
+      </head>
       <body
         className={`${poppins.variable} ${cursive.variable} ${mons.variable} ${dancing.variable} antialiased`}
       >
