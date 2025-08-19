@@ -8,14 +8,14 @@ export default function EmptyCart() {
   const router = useRouter();
   return (
     <>
-      <div className="min-h-screen relative flex flex-col bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
+      <div className="min-h-screen relative flex flex-col bg-gradient-to-br from-[#EAE8E3] to-white">
         <Header />
 
         <section className="flex-1 flex flex-col items-center justify-center">
           <div className="p-6 bg-white rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill="blue"
+              fill="#00B259"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
@@ -28,7 +28,9 @@ export default function EmptyCart() {
               />
             </svg>
           </div>
-          <p className="text-2xl font-semibold mt-2.5">Your cart is empty!</p>
+          <p className="text-2xl font-semibold mt-2.5 text-[#005C34]">
+            Your cart is empty!
+          </p>
 
           <div className="flex items-center justify-center">
             <div className="relative inline-block md:mt-7 mt-10">

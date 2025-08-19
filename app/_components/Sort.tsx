@@ -46,17 +46,19 @@ export default function Sort({ options }: SortProps) {
   return (
     <div className="relative" ref={sortRef}>
       <div
-        className="border px-2.5 py-3 rounded-lg font-normal text-sm flex gap-5 justify-between items-center cursor-pointer focus:border-blue-400"
+        className="border-2 border-[#EAE8E3] hover:border-[#00B259] px-4 py-3 rounded-xl font-medium text-sm flex gap-5 justify-between items-center cursor-pointer focus:border-[#00B259] transition-all duration-300 bg-white shadow-sm hover:shadow-md text-[#005C34]"
         onClick={() => setIsOpen(true)}
       >
-        <p>{selectedOption}</p>
+        <p className="select-none">{selectedOption}</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          strokeWidth={1.8}
           stroke="currentColor"
-          className="size-5"
+          className={`size-5 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
         >
           <path
             strokeLinecap="round"
@@ -67,19 +69,41 @@ export default function Sort({ options }: SortProps) {
       </div>
 
       {isOpen && (
-        <ul className="absolute z-10 w-full bg-white border-gray-300 text-sm shadow-lg">
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={`px-4 py-2 cursor-pointer ${
-                selectedOption === option.label ? "bg-blue-600 text-white" : ""
-              } ${selectedOption !== option.label ? "hover:bg-blue-100" : ""}`}
-              onClick={() => toggleSort(option.value, option.label)}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
+        <div className="absolute z-20 w-full mt-2 bg-white border border-[#EAE8E3] rounded-xl shadow-lg overflow-hidden">
+          <ul className="py-1">
+            {options.map((option) => (
+              <li
+                key={option.value}
+                className={`px-4 py-3 cursor-pointer text-sm font-medium transition-all duration-200 ${
+                  selectedOption === option.label
+                    ? "bg-gradient-to-r from-[#00B259] to-[#009246] text-white"
+                    : "text-[#005C34] hover:bg-[#EAE8E3] hover:text-[#00B259]"
+                }`}
+                onClick={() => toggleSort(option.value, option.label)}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{option.label}</span>
+                  {selectedOption === option.label && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="size-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m4.5 12.75 6 6 9-13.5"
+                      />
+                    </svg>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

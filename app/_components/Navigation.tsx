@@ -1,147 +1,180 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
 
+import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FaShoppingCart } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Session } from "next-auth";
+import { ChevronDown } from "lucide-react";
 
-import Logo from "./Logo";
-import Signup from "@/app/_components/Signup";
-import Login from "@/app/_components/Login";
-import { useUser } from "../_auth/useUser";
-import UserIcon from "./UserIcon";
-
-import { getTotalCartQuantity } from "../store/carts";
-import UserDropdown from "./UserDropdown";
-
-interface Props {
-  session: Session | null;
+interface NavItem {
+  label: string;
+  href: string;
+  hasDropdown?: boolean;
+  subItems?: Array<{
+    label: string;
+    href: string;
+    description?: string;
+  }>;
 }
 
-export default function Navigation({ session }: Props) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const router = useRouter();
+const navigationData: NavItem[] = [
+  {
+    label: "SHOP",
+    href: "/products",
+    hasDropdown: false,
+  },
+  {
+    label: "NEW ARRIVALS",
+    href: "/#best",
+    hasDropdown: false,
+  },
+  {
+    label: "DELIVERY",
+    href: "/#",
+    hasDropdown: true,
+    subItems: [
+      {
+        label: "Same Day Delivery",
+        href: "/#",
+        description: "Express delivery within 24 hours for urgent orders",
+      },
+      {
+        label: "Scheduled Delivery",
+        href: "/#",
+        description: "Plan deliveries to match your operational timeline",
+      },
+      {
+        label: "Bulk Distribution",
+        href: "/#",
+        description: "Multi-location delivery for enterprise accounts",
+      },
+      {
+        label: "White Glove Service",
+        href: "/#",
+        description: "Premium setup and installation at your location",
+      },
+    ],
+  },
 
-  const ref = useRef<HTMLDivElement>(null);
+  {
+    label: "ABOUT",
+    href: "/about",
+    hasDropdown: true,
+    subItems: [
+      {
+        label: "Our Mission",
+        href: "/about/mission",
+        description: "Safety, compliance & brand enhancement",
+      },
+      {
+        label: "Innovation",
+        href: "/about/innovation",
+        description: "Continuous evolution in workplace solutions",
+      },
+      {
+        label: "Sustainability",
+        href: "/about/sustainability",
+        description: "Responsible materials & supply chains",
+      },
+      {
+        label: "Contact",
+        href: "/about/contact",
+        description: "Get in touch with our team",
+      },
+    ],
+  },
+  {
+    label: "CONTACT US",
+    href: "mailto:nwangumabimma@gmail.com",
+    hasDropdown: false,
+  },
+];
 
-  const { user: supabaseUser } = useUser();
-  const totalQuantity = useSelector(getTotalCartQuantity);
+const NavigationHeader: React.FC = () => {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const user = session?.user || supabaseUser;
+  const handleMouseEnter = (label: string) => {
+    setActiveDropdown(label);
+  };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
 
   return (
-    <nav className="relative flex justify-between items-center px-8 xl:px-16 max-w-full">
-      <div>
-        <Link href="/">
-          <Logo />
-        </Link>
-      </div>
-
-      <div>
-        <ul className="lg:flex hidden items-cente gap-5 xl:gap-8 text-xl text-black uppercase">
-          <li>
-            <Link href="/products" className="relative group">
-              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                Shop
-              </span>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/#best" className="relative group">
-              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                New Arrivals
-              </span>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/#about" className="relative group">
-              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                About
-              </span>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="mailto:nwangumabimma@gmail.com"
-              className="relative group"
+    <nav className="bg-[#005C34] text-white border-b border-[#00B259] mt-18 hidden lg:block">
+      <div className="container mx-auto px-8">
+        <ul className="flex items-center justify-start space-x-8 lg:space-x-12">
+          {navigationData.map((item) => (
+            <li
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => handleMouseEnter(item.label)}
+              onMouseLeave={handleMouseLeave}
             >
-              <span className="text-gray-800 hover:text-gray-500 transition duration-300 ">
-                Contact
-              </span>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="flex justify-between items-center gap-4">
-        <div
-          className="cursor-pointer relative"
-          onClick={() => router.push("/cart")}
-        >
-          <FaShoppingCart className="h-9 w-9" />
-          {totalQuantity > 0 && (
-            <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              {totalQuantity}
-            </span>
-          )}
-        </div>
-
-        <div className={`flex items-center gap-2.5`}>
-          {user ? (
-            <div className="flex items-center gap-2">
-              {session?.user ? (
-                <div className="relative cursor-pointer" ref={ref}>
-                  <img
-                    src={session?.user?.image ?? undefined}
-                    alt="user_image"
-                    className="h-9 rounded-full"
-                    onClick={() => setIsOpen((open) => !open)}
+              <Link
+                href={item.href}
+                className="flex items-center py-4 text-sm font-semibold text-white hover:text-[#A7F133] transition-colors duration-200"
+              >
+                <span>{item.label}</span>
+                {item.hasDropdown && (
+                  <ChevronDown
+                    className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === item.label ? "rotate-180" : ""
+                    }`}
                   />
-                  {isOpen && (
-                    <div className="absolute top-10 -left-[9rem] mt-2 w-[14rem] bg-white shadow-md rounded z-50 overflow-hidden text-ellipsis">
-                      <UserDropdown
-                        session={session}
-                        setIsOpen={setIsOpen}
-                        isOpen={isOpen}
-                      />
-                    </div>
-                  )}
+                )}
+              </Link>
+
+              {/* Enhanced Dropdown Menu */}
+              {item.hasDropdown && item.subItems && (
+                <div
+                  className={`absolute top-full left-0 z-50 min-w-[320px] bg-white text-gray-900 shadow-xl border border-gray-200 rounded-lg transition-all duration-200 ${
+                    activeDropdown === item.label
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-2"
+                  }`}
+                >
+                  <ul className="py-3">
+                    {item.subItems.map((subItem) => (
+                      <li key={subItem.label}>
+                        <Link
+                          href={subItem.href}
+                          className="block px-5 py-3 hover:bg-[#EAE8E3] transition-colors duration-150 group"
+                        >
+                          <div className="flex flex-col">
+                            <span className="text-sm font-semibold text-gray-900 group-hover:text-[#00B259] transition-colors">
+                              {subItem.label}
+                            </span>
+                            {subItem.description && (
+                              <span className="text-xs text-gray-600 mt-1 leading-tight">
+                                {subItem.description}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA Footer for dropdowns */}
+                  <div className="border-t border-gray-200 px-5 py-3 bg-[#EAE8E3] rounded-b-lg">
+                    <p className="text-xs text-gray-700">
+                      Need a custom solution?{" "}
+                      <Link
+                        href="/contact"
+                        className="text-[#00B259] font-semibold hover:text-[#005C34] transition-colors"
+                      >
+                        Contact our team
+                      </Link>
+                    </p>
+                  </div>
                 </div>
-              ) : (
-                <UserIcon />
               )}
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <Login />
-              <Signup />
-            </div>
-          )}
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </nav>
   );
-}
+};
+
+export default NavigationHeader;

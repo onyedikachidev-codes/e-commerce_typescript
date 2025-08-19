@@ -38,7 +38,7 @@ const StarRating: React.FC<StarRatingProps> = ({
               className="absolute top-0 left-0 overflow-hidden"
               style={{ width: `${fillPercent}%` }}
             >
-              <Star size={size} className="text-purple-500 fill-purple-500" />
+              <Star size={size} className="text-[#00B259] fill-[#00B259]" />
             </div>
           </div>
         );

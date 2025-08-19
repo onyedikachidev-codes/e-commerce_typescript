@@ -2,67 +2,159 @@
 
 import React from "react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { FaFacebook, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa";
+import Logo from "./Logo";
 
-export default function Footer() {
+const Footer: React.FC = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+  };
+
   return (
-    <footer className="bg-white text-gray-800 px-10 sm:px-16 sm:py-10 py-6">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start gap-16">
-        <div className="sm:max-w-[50%] lg:max-w-[57%] max-w-full">
-          <h2 className="text-xl font-semibold mb-2 text-black text-center sm:text-left">
-            Trivela Group&apos;s
-          </h2>
-          <p className="text-sm font-medium text-gray-600">
-            A premier online shopping destination committed to offering
-            customers around the globe a seamless experience, top-quality
-            products, and trusted service—bringing the world of retail right to
-            your fingertips.
+    <footer className="bg-black px-4 pt-16 pb-8 text-gray-300 sm:px-6 lg:px-8">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-4">
+            <Link href="/">
+              <Logo />
+            </Link>
+            <p className="font-semibold mt-4 text-[#00B259]">
+              Protéger. Équiper. Valoriser.
+            </p>
+            <p className="text-sm">
+              APB Safety delivers complete professional clothing and PPE
+              solutions for large companies, ensuring employee safety while
+              enhancing brand image through innovative equipment management.
+            </p>
+            <div className="flex space-x-2">
+              <Link href="#" aria-label="Facebook">
+                <FaFacebook className="transition-colors h-7 w-7 hover:text-[#00B259]" />
+              </Link>
+              <Link href="#" aria-label="YouTube">
+                <FaYoutube className="transition-colors h-8 w-8 hover:text-[#00B259]" />
+              </Link>
+              <Link href="#" aria-label="Instagram">
+                <FaInstagram className="transition-colors h-7 w-7 hover:text-[#00B259]" />
+              </Link>
+              <Link href="#" aria-label="LinkedIn">
+                <FaLinkedin className="transition-colors h-7 w-7 hover:text-[#00B259]" />
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white">Our Solutions</h3>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Professional Workwear
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Personal Protective Equipment
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Corporate Uniforms
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  EMIL Digital Platform
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Large Account Services
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white">Support</h3>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Distribution Network
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Technical Documentation
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Compliance Standards
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Client Portal
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Legal Information
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Terms and Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#00B259]">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white">Stay Informed</h3>
+            <p className="mt-4 text-sm">
+              Subscribe to receive updates on new safety solutions, compliance
+              changes, and industry insights.
+            </p>
+            <div className="mt-4">
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="Your professional email"
+                  className="w-full rounded-md focus:outline-0 focus:ring-2 focus:ring-[#00B259] bg-white py-2.5 pl-4 pr-10 text-black placeholder-gray-400"
+                />
+
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 hover:text-[#00B259] transition-colors"
+                >
+                  <ArrowRight size={20} className="text-gray-400" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <p className="text-sm text-gray-500">
+            &copy; 2025 APB SAFETY. All rights reserved.
           </p>
         </div>
-
-        <div className="flex items-center justify-between w-full">
-          <div className="">
-            <h3 className="text-lg font-semibold mb-2">Menu</h3>
-            <ul className="space-y-1.5 text-sm font-medium">
-              <li>
-                <Link href="/products">Shop</Link>
-              </li>
-              <li>
-                <Link href="/#best">New Arrivals</Link>
-              </li>
-              <li>
-                <Link href="/#about">About Trivela</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="">
-            <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-            <ul className="space-y-1.5 text-sm font-medium">
-              <li>
-                <Link href="/">FAQ&apos;s</Link>
-              </li>
-              <li>
-                <Link href="/">Privacy Policy</Link>
-              </li>
-              <li>
-                <Link href="mailto:nwangumabimma@gmail.com">Contact Us</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <hr className="my-6 border-gray-200" />
-
-      <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-medium">
-        <p>&copy;2025 Trivela Inc. All Rights Reserved</p>
-        <Link
-          href="/privacy-policy"
-          className="mt-2 md:mt-0 hover:underline font-medium"
-        >
-          Privacy Policy
-        </Link>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

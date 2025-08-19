@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 import { Montserrat } from "next/font/google";
 
-import Navigation from "@/app/_components/Navigation";
 import MobileNav from "@/app/_components/MobileNav";
+import PrimaryNav from "./PrimaryNav";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -12,18 +12,14 @@ const mons = Montserrat({
 });
 
 export default function Header() {
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return null;
-  }
+  const { data: session } = useSession();
 
   return (
     <header
-      className={`${mons.className} py-5 fixed left-0 top-0 w-full bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4] lg:bg-none lg:backdrop-blur-lg z-40 shadow-md`}
+      className={`${mons.className} block lg:fixed left-0 top-0 w-full bg-white lg:backdrop-blur-lg z-40 shadow-md`}
     >
       <div className="hidden lg:block">
-        <Navigation session={session} />
+        <PrimaryNav session={session} />
       </div>
 
       <div className="lg:hidden block">
