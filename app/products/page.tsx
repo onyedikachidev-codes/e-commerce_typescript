@@ -22,6 +22,7 @@ import { useClientPagination } from "../_hooks/useClientPagination";
 import { Pagination } from "../_components/Pagination";
 import Footer from "../_components/Footer";
 import ProductSkeleton from "../_components/ProductSkeleton";
+import Navigation from "@/app/_components/Navigation";
 
 const mons = Montserrat({
   subsets: ["latin"],
@@ -71,11 +72,6 @@ export default function Page() {
       !!products?.length,
   });
 
-  // const totalItems =
-  //   value !== "Search products, brands and categories" && value.length >= 4
-  //     ? filteredProducts?.length ?? 0
-  //     : (sortedProducts?.length ?? 0) || (products?.length ?? 0);
-
   const displayProducts =
     (filteredProducts ?? []).length >= 1
       ? filteredProducts
@@ -90,13 +86,24 @@ export default function Page() {
     totalPages,
   } = useClientPagination(displayProducts ?? [], initialPage, limit);
 
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isError)
+    return (
+      <div className="bg-gradient-to-br from-[#EAE8E3] to-white min-h-screen flex items-center justify-center">
+        <div className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#00B259]">
+          <h2 className="text-xl font-semibold text-[#005C34] mb-2">
+            Error Loading Products
+          </h2>
+          <p className="text-gray-600">{error.message}</p>
+        </div>
+      </div>
+    );
 
   return (
-    <div className="bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
+    <div className="bg-gradient-to-br from-[#EAE8E3] to-white min-h-screen">
       <Header />
+      <Navigation />
 
-      <div className="pt-24 flex justify-center items-center">
+      <div className="pt-6 flex justify-center items-center">
         <HeaderSlider />
       </div>
 
@@ -104,10 +111,10 @@ export default function Page() {
         className={`${mons.className} md:flex justify-between items-center py-4 mt-3 mx-7 text-xl `}
       >
         <div>
-          <h2 className="text-2xl font-semibold text-[#2C3E50] mt-5 md:mt-0">
+          <h2 className="text-2xl font-semibold text-[#005C34] mt-5 md:mt-0">
             Popular Products
           </h2>
-          <div className="w-16 h-1 bg-blue-500 mt-1 rounded ml-[3.2rem]" />
+          <div className="w-16 h-1 bg-gradient-to-r from-[#00B259] to-[#009246] mt-1 rounded ml-[3.2rem]" />
         </div>
 
         <div className="hidden lg:block">

@@ -21,19 +21,22 @@ export default function Page() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <main className="min-h-screen relative flex flex-col bg-gradient-to-br from-[#f5f7fa] to-[#e4ecf4]">
+    <main className="min-h-screen relative flex flex-col bg-gradient-to-br from-[#EAE8E3] to-white">
       <Header />
 
       <section className="pt-20 flex-1 flex flex-col ">
         <div className="px-4 py-3">
-          <Link href="/products" className="hover:text-blue-500 cursor-pointer">
+          <Link
+            href="/products"
+            className="hover:text-[#00B259] cursor-pointer"
+          >
             &larr; Back to products
           </Link>
 
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse mt-12 hidden md:table">
               <thead>
-                <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                <tr className="bg-[#EAE8E3] text-[#005C34] uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Product</th>
                   <th className="py-3 px-6 text-left">Price</th>
                   <th className="py-3 px-6 text-left">Quantity</th>
@@ -73,14 +76,14 @@ export default function Page() {
 
           <div className="mt-6 pb-6 flex items-center justify-between mx-3 xs:mx-5">
             <button
-              className="px-3 py-2 border border-blue-600 hover:bg-blue-200 cursor-pointer rounded-md"
+              className="px-3 py-2 border border-[#00B259] hover:bg-[#EAE8E3] cursor-pointer rounded-md text-[#00B259]"
               onClick={() => dispatch(clearCart())}
             >
               Clear cart
             </button>
 
             <div className="">
-              <button className="py-2.5 px-6 xs:px-9 w-full bg-blue-600 hover:bg-blue-400 cursor-pointer  rounded-md text-white">
+              <button className="py-2.5 px-6 xs:px-9 w-full bg-[#00B259] hover:bg-[#009246] cursor-pointer  rounded-md text-white">
                 Checkout ($ {Math.ceil(total).toFixed(2)})
               </button>
             </div>

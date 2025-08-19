@@ -33,7 +33,7 @@ export default function CartItemMobile({
       <div className="flex gap-4">
         <img src={image} alt={name} className="w-24 h-24 object-contain" />
         <div className="flex-1">
-          <h2 className="text-base font-semibold">{name}</h2>
+          <h2 className="text-base font-semibold text-[#005C34]">{name}</h2>
           <p className="text-sm text-gray-500 mt-2">Price: ${unitPrice}</p>
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function CartItemMobile({
         {/* Remove */}
         <button
           onClick={() => dispatch(deleteItems(productId))}
-          className="flex items-center gap-1 text-blue-500 text-sm"
+          className="flex items-center gap-1 text-[#00B259] text-sm"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,14 +67,14 @@ export default function CartItemMobile({
           <button
             onClick={() => dispatch(decreaseItemQuantity(productId))}
             disabled={quantity <= 1}
-            className="w-8 h-8 bg-blue-400 text-white rounded-md flex items-center justify-center text-xl"
+            className="w-8 h-8 bg-[#00B259] text-white rounded-md flex items-center justify-center text-xl"
           >
             -
           </button>
           <span>{quantity}</span>
           <button
             onClick={() => dispatch(increaseItemQuantity(productId))}
-            className="w-8 h-8 bg-blue-400 text-white rounded-md flex items-center justify-center text-xl"
+            className="w-8 h-8 bg-[#00B259] text-white rounded-md flex items-center justify-center text-xl"
           >
             +
           </button>

@@ -52,7 +52,7 @@ export default function MobileNav({ session }: Props) {
   const user = session?.user || supabaseUser;
 
   return (
-    <nav className="relative flex justify-between items-center sm:px-16 xmd:px-8 xs:px-6 px-5 max-w-full">
+    <nav className="relative flex justify-between items-center py-5 sm:px-16 xmd:px-8 xs:px-6 px-5 max-w-full">
       <div className="flex gap-2.5 sm:gap-3.5 items-center">
         <Link href="/">
           <Logo />
@@ -121,7 +121,7 @@ export default function MobileNav({ session }: Props) {
         >
           <FaShoppingCart className="h-7 w-7 xs:h-8 xs:w-8" />
           {totalQuantity > 0 && (
-            <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-2 -right-2 bg-[#00B259] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
               {totalQuantity}
             </span>
           )}

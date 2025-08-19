@@ -61,7 +61,7 @@ function Overlay({ children }: OverlayProps) {
 
 function StyledDiv({ children }: StyledDivProps) {
   return (
-    <div className="fixed top-1/2 lg:left-[50%] xl:left-[50%] xl:right-[10%] left-3 right-3 lg:right-0 md:left-24 md:right-24 lg:-translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg shadow-lg px-16 pt-12 transition-all duration-500">
+    <div className="fixed top-1/2 lg:left-[50%] xl:left-[50%] xl:right-[10%] left-3 right-3 lg:right-0 md:left-24 md:right-24 lg:-translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-green-200 to-green-300 rounded-lg shadow-lg px-16 pt-12 transition-all duration-500">
       {children}
     </div>
   );

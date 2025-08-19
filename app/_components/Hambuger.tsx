@@ -26,22 +26,33 @@ export default function Hambuger({
     {
       label: "Home",
       href: "/",
-      onClick: () => router.push("/"),
+      onClick: () => {
+        router.push("/");
+        setCurrentHash("");
+      },
     },
     {
       label: "Shop",
       href: "/products",
-      onClick: () => router.push("/products"),
+      onClick: () => {
+        router.push("/products");
+      },
     },
     {
       label: "New Arrivals",
       href: "/#best",
-      onClick: () => router.push("/#best"),
+      onClick: () => {
+        router.push("/#best");
+        setCurrentHash("#best");
+      },
     },
     {
       label: "About Trivela",
       href: "/#about",
-      onClick: () => router.push("/#about"),
+      onClick: () => {
+        router.push("/#about");
+        setCurrentHash("#about");
+      },
     },
     {
       label: "Contact us",
@@ -149,7 +160,15 @@ export default function Hambuger({
 
         <div className="w-full">
           {navItems.map(({ label, href, onClick }, index) => {
-            const isActive = `${pathname}${currentHash}` === href;
+            const isActive =
+              (href === "/" && pathname === "/" && currentHash === "") ||
+              (href.startsWith("/#") &&
+                pathname === "/" &&
+                href === `/${currentHash}`) ||
+              (!href.startsWith("/#") &&
+                href !== "/" &&
+                href === pathname &&
+                currentHash === "");
 
             return (
               <div

@@ -51,7 +51,7 @@ export const Pagination: React.FC<PaginationControlsProps> = ({
       <button
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
-        className="p-2 rounded-full hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        className="p-2 rounded-full hover:bg-[#EAE8E3] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
       >
         <ChevronLeft size={20} />
       </button>
@@ -68,8 +68,8 @@ export const Pagination: React.FC<PaginationControlsProps> = ({
             className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-medium
               ${
                 item === page
-                  ? "bg-indigo-600 text-white"
-                  : "text-gray-600 hover:bg-gray-100"
+                  ? "bg-[#00B259] text-white"
+                  : "text-[#005C34] hover:bg-[#EAE8E3]"
               }`}
           >
             {item}
@@ -80,7 +80,7 @@ export const Pagination: React.FC<PaginationControlsProps> = ({
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
-        className="p-2 rounded-full cursor-pointer hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="p-2 rounded-full cursor-pointer hover:bg-[#EAE8E3] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <ChevronRight size={20} />
       </button>

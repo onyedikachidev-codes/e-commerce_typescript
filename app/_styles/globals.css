@@ -24,11 +24,71 @@ html.dark {
   .spinner {
     margin: 20rem auto 1.6rem;
     width: 60px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 8px solid theme("colors.primary.300");
-    border-right-color: theme("colors.primary.200");
-    animation: rotate 1s infinite linear;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .spinner::before,
+  .spinner::after,
+  .spinner {
+    content: "";
+  }
+
+  .spinner::before {
+    width: 12px;
+    height: 40px;
+    background-color: #00b259;
+    border-radius: 6px;
+    animation: bounce 1.2s infinite ease-in-out;
+    animation-delay: 0s;
+  }
+
+  .spinner::after {
+    width: 12px;
+    height: 40px;
+    background-color: #005c34;
+    border-radius: 6px;
+    animation: bounce 1.2s infinite ease-in-out;
+    animation-delay: 0.4s;
+  }
+
+  .spinner {
+    position: relative;
+  }
+
+  .spinner::before {
+    position: absolute;
+    left: 0;
+  }
+
+  .spinner::after {
+    position: absolute;
+    right: 0;
+  }
+
+  .spinner div {
+    width: 12px;
+    height: 40px;
+    background-color: #009246;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 1.2s infinite ease-in-out;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: scaleY(0.4);
+    }
+    40% {
+      transform: scaleY(1);
+    }
   }
 
   @media (min-width: 1024px) {

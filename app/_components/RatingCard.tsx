@@ -39,7 +39,7 @@ export default function RatingCard() {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Add cloned first slide at the end
+
   const slides = [...ratingSliderData, ratingSliderData[0]];
 
   useEffect(() => {
@@ -51,11 +51,11 @@ export default function RatingCard() {
 
   useEffect(() => {
     if (currentSlide === slides.length - 1) {
-      // At cloned slide (fake 4th), reset without transition
+     
       setTimeout(() => {
         setIsTransitioning(false);
         setCurrentSlide(0);
-      }, 700); // Wait for transition to finish
+      }, 700); 
     } else {
       setIsTransitioning(true);
     }
