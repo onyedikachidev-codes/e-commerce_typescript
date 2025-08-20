@@ -70,7 +70,7 @@ const Delivery: React.FC = () => {
                     <span>Pay on Delivery</span>
                   </div>
 
-                  <div className="flex items-center gap-2 hidden md:block">
+                  <div className="md:flex items-center gap-2 hidden">
                     <div className="w-2 h-2 bg-[#009246] rounded-full"></div>
                     <span>Bulk Distribution</span>
                   </div>

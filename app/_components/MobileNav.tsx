@@ -12,12 +12,12 @@ import { Session } from "next-auth";
 
 import { useUser } from "../_auth/useUser";
 
-import UserIcon from "./UserIcon";
 import Hambuger from "./Hambuger";
 import Logo from "./Logo";
 import Modal from "./Modal";
 import SignupForm from "./SignupForm";
 import UserDropdown from "./UserDropdown";
+import { User } from "lucide-react";
 
 interface Props {
   session: Session | null;
@@ -85,7 +85,7 @@ export default function MobileNav({ session }: Props) {
                   )}
                 </div>
               ) : (
-                <UserIcon />
+                <User size={22} />
               )}
             </div>
           ) : (
