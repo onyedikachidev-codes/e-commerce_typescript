@@ -60,7 +60,7 @@ export default function MobileNav({ session }: Props) {
       </div>
 
       <div className="flex items-center gap-2.5 sm:gap-3.5">
-        <div className={`${mons.className} flex gap-4`}>
+        {/* <div className={`${mons.className} flex gap-4`}>
           {user ? (
             <div className="flex items-center gap-2">
               {session?.user ? (
@@ -113,7 +113,7 @@ export default function MobileNav({ session }: Props) {
               </Modal>
             </>
           )}
-        </div>
+        </div> */}
 
         <div
           className="cursor-pointer relative"
