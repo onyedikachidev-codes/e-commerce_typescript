@@ -38,9 +38,9 @@ const Delivery: React.FC = () => {
 
               <p className="text-base leading-relaxed text-white/80 mb-8">
                 <strong className="text-[#A7F133]">800+ employees?</strong>{" "}
-                Benefit from our large account services including dedicated
-                stock management and streamlined procurement through our EMIL
-                platform.
+                Benefit from our large account services with dedicated stock
+                management and simplified bulk ordering tailored to your
+                brand&apos;s needs.
               </p>
 
               <div className="flex flex-col items-start md:items-end gap-4 sm:flex-row sm:justify-start">

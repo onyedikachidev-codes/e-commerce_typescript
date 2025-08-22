@@ -35,11 +35,14 @@ export default function Home() {
       </div>
       <BestSellers />
 
-      <div id="about" className="">
+      <div id="delivery" className="">
         &nbsp;
       </div>
       <section className={`${mons.className} `}>
         <Delivery />
+        <div id="about" className="">
+          &nbsp;
+        </div>
         <History />
         <ServiceBanner />
         <Footer />

@@ -21,7 +21,7 @@ const services = [
   },
   {
     icon: <MdOutlineManageAccounts size={40} />,
-    title: "EMIL Platform",
+    title: "ONLINE Platform",
     description: "Digital management for multi-site distribution",
     color: "text-[#A7F133]",
     bgColor: "bg-[#A7F133]/10",
@@ -42,11 +42,12 @@ const ServiceBanner: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-2xl font-black text-[#005C34] uppercase tracking-wide mb-2">
-            Enterprise-Grade Service
+            Premium Lifestyle Solutions
           </h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
-            Comprehensive solutions designed for large organizations that demand
-            reliability, compliance, and efficiency.
+            Stylish clothing, modern accessories, and smart electronics —
+            thoughtfully designed to keep you looking sharp, connected, and
+            inspired.
           </p>
         </div>
 
