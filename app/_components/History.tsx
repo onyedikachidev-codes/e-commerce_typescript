@@ -39,11 +39,11 @@ const History: React.FC = () => {
             <div className="space-y-6 text-lg leading-relaxed text-gray-700">
               <p>
                 <strong className="text-[#005C34]">Since 1995</strong>, Trivela
-                has established itself as the trusted partner for large
-                enterprises across Africa&apos;s most demanding industries. What
-                started as a vision to revolutionize workplace safety has
-                evolved into a comprehensive solution provider for organizations
-                with 800+ employees.
+                has grown into a trusted lifestyle brand across Africa, offering
+                clothing, accessories, and electronics that blend style,
+                quality, and innovation. With 800+ dedicated employees, we
+                deliver products that elevate everyday living and empower
+                self-expression.
               </p>
 
               <div className="">

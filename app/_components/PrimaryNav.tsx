@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Search, User, LogIn, UserPlus } from "lucide-react";
+import { User, LogIn, UserPlus } from "lucide-react";
 
 import Logo from "./Logo";
 import LoginForm from "./LoginForm";

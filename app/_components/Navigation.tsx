@@ -28,27 +28,27 @@ const navigationData: NavItem[] = [
   },
   {
     label: "DELIVERY",
-    href: "/#",
+    href: "/#delivery",
     hasDropdown: true,
     subItems: [
       {
         label: "Same Day Delivery",
-        href: "/#",
+        href: "/#delivery",
         description: "Express delivery within 24 hours for urgent orders",
       },
       {
         label: "Scheduled Delivery",
-        href: "/#",
+        href: "/#delivery",
         description: "Plan deliveries to match your operational timeline",
       },
       {
         label: "Bulk Distribution",
-        href: "/#",
+        href: "/#delivery",
         description: "Multi-location delivery for enterprise accounts",
       },
       {
         label: "White Glove Service",
-        href: "/#",
+        href: "/#delivery",
         description: "Premium setup and installation at your location",
       },
     ],
@@ -56,27 +56,27 @@ const navigationData: NavItem[] = [
 
   {
     label: "ABOUT",
-    href: "/about",
+    href: "/#about",
     hasDropdown: true,
     subItems: [
       {
         label: "Our Mission",
-        href: "/about/mission",
+        href: "/#about",
         description: "Safety, compliance & brand enhancement",
       },
       {
         label: "Innovation",
-        href: "/about/innovation",
+        href: "/#about",
         description: "Continuous evolution in workplace solutions",
       },
       {
         label: "Sustainability",
-        href: "/about/sustainability",
+        href: "/#about",
         description: "Responsible materials & supply chains",
       },
       {
         label: "Contact",
-        href: "/about/contact",
+        href: "/#about",
         description: "Get in touch with our team",
       },
     ],
