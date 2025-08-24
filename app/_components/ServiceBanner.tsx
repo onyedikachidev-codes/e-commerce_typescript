@@ -21,7 +21,7 @@ const services = [
   },
   {
     icon: <MdOutlineManageAccounts size={40} />,
-    title: "ONLINE Platform",
+    title: "Management Platform",
     description: "Digital management for multi-site distribution",
     color: "text-[#A7F133]",
     bgColor: "bg-[#A7F133]/10",
